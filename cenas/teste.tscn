@@ -1,0 +1,99 @@
+[gd_scene load_steps=16 format=3 uid="uid://bglv3gxj6dgxm"]
+
+[ext_resource type="Script" path="res://scripts/rts_cam.gd" id="1_es4np"]
+[ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="2_yx03h"]
+[ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="3_pchc1"]
+[ext_resource type="PackedScene" uid="uid://buctg0yug8gnx" path="res://cenas/estrutura.tscn" id="4_wqpad"]
+[ext_resource type="Script" path="res://cenas/diretor.gd" id="5_tj4np"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="6_njbww"]
+[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="6_qiq0y"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_55rgx"]
+[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="7_255il"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2lx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6xem2"]
+size = Vector2(50, 50)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vooh0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kh1nc"]
+
+[sub_resource type="Sky" id="Sky_6gwwn"]
+sky_material = SubResource("ProceduralSkyMaterial_kh1nc")
+
+[sub_resource type="Environment" id="Environment_fioka"]
+background_mode = 2
+sky = SubResource("Sky_6gwwn")
+ambient_light_source = 3
+ambient_light_color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="main" type="Node3D"]
+
+[node name="chão" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="chão"]
+material_override = SubResource("StandardMaterial3D_om2lx")
+mesh = SubResource("PlaneMesh_6xem2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chão"]
+shape = SubResource("WorldBoundaryShape3D_vooh0")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939931, 0.341364, 0, -0.341364, 0.939931, 0, 6.38124, 15.4855)
+script = ExtResource("1_es4np")
+
+[node name="entidades" type="Node" parent="."]
+
+[node name="unidade" parent="entidades" instance=ExtResource("2_yx03h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53927, 1.05168, 0.171121)
+
+[node name="unidade2" parent="entidades" instance=ExtResource("2_yx03h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62139, 1.05168, 3.18283)
+
+[node name="unidade3" parent="entidades" instance=ExtResource("2_yx03h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32055, 1.05168, 1.67139)
+
+[node name="recurso2" parent="entidades" instance=ExtResource("3_pchc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.60692, 1.17041, 4.04552)
+
+[node name="recurso" parent="entidades" instance=ExtResource("3_pchc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97042, 1.032, 6.31532)
+
+[node name="estrutura" parent="entidades" instance=ExtResource("4_wqpad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.50296, -1)
+
+[node name="graficos" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="graficos"]
+process_mode = 4
+environment = SubResource("Environment_fioka")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="graficos"]
+transform = Transform3D(0.784614, -0.132382, 0.605686, 0, 0.976938, 0.213525, -0.619985, -0.167535, 0.766519, 0, 1.9663, 0)
+light_color = Color(1, 1, 0.615686, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="diretor" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_tj4np")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.51142, 0)
+
+[node name="Mao_Esq" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="LeftHand" parent="XROrigin3D/Mao_Esq" instance=ExtResource("6_qiq0y")]
+
+[node name="FunctionPointer" parent="XROrigin3D/Mao_Esq/LeftHand" instance=ExtResource("7_55rgx")]
+
+[node name="Mao_Dir" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="RightHand" parent="XROrigin3D/Mao_Dir" instance=ExtResource("7_255il")]
+
+[node name="StartXR" parent="." instance=ExtResource("6_njbww")]
