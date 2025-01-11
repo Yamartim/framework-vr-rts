@@ -1,14 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bglv3gxj6dgxm"]
+[gd_scene load_steps=13 format=3 uid="uid://bkbyr1s24vxsg"]
 
 [ext_resource type="Script" path="res://scripts/rts_cam.gd" id="1_es4np"]
 [ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="2_yx03h"]
 [ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="3_pchc1"]
 [ext_resource type="PackedScene" uid="uid://buctg0yug8gnx" path="res://cenas/estrutura.tscn" id="4_wqpad"]
-[ext_resource type="Script" path="res://cenas/diretor.gd" id="5_tj4np"]
-[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="6_njbww"]
-[ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="6_qiq0y"]
-[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="7_55rgx"]
-[ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="7_255il"]
+[ext_resource type="Script" path="res://scripts/diretor.gd" id="5_tj4np"]
+[ext_resource type="PackedScene" uid="uid://cctm31a5mlmu7" path="res://cenas/player_vr.tscn" id="6_by0vs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2lx"]
 
@@ -79,21 +76,5 @@ shadow_enabled = true
 unique_name_in_owner = true
 script = ExtResource("5_tj4np")
 
-[node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.51142, 0)
-
-[node name="Mao_Esq" type="XRController3D" parent="XROrigin3D"]
-tracker = &"left_hand"
-
-[node name="LeftHand" parent="XROrigin3D/Mao_Esq" instance=ExtResource("6_qiq0y")]
-
-[node name="FunctionPointer" parent="XROrigin3D/Mao_Esq/LeftHand" instance=ExtResource("7_55rgx")]
-
-[node name="Mao_Dir" type="XRController3D" parent="XROrigin3D"]
-tracker = &"right_hand"
-
-[node name="RightHand" parent="XROrigin3D/Mao_Dir" instance=ExtResource("7_255il")]
-
-[node name="StartXR" parent="." instance=ExtResource("6_njbww")]
+[node name="XROrigin3D" parent="." instance=ExtResource("6_by0vs")]
+initialize = true
