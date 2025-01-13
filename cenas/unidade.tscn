@@ -62,3 +62,4 @@ mesh = SubResource("CapsuleMesh_cbike")
 shape = SubResource("CapsuleShape3D_8dc8n")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="pointer_event" from="." to="." method="_on_pointer_event"]

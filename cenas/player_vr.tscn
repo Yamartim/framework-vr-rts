@@ -10,17 +10,24 @@
 script = ExtResource("1_ark1w")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
 
 [node name="Mao_Esq" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="Mao_Esq" instance=ExtResource("1_0i3lv")]
 
 [node name="FunctionPointer" parent="Mao_Esq/LeftHand" instance=ExtResource("2_c7aet")]
+show_target = true
+collision_mask = 5242881
 
 [node name="Mao_Dir" type="XRController3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Mao_Dir" instance=ExtResource("3_oear4")]
 
 [node name="StartXR" parent="." instance=ExtResource("4_tef3j")]
+
+[connection signal="pointing_event" from="Mao_Esq/LeftHand/FunctionPointer" to="." method="_on_function_pointer_pointing_event"]

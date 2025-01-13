@@ -3,6 +3,9 @@ class_name Unidade extends CharacterBody3D
 signal escolhida
 signal desescolhida
 
+#PRECISA ter um sinal com esse nome pro pointer event emitir
+signal pointer_event(event:XRToolsPointerEvent)
+
 @onready var meshinst : MeshInstance3D = get_node("MeshInstance3D") 
 @onready var selecionado : bool = false
 @onready var alvo : Vector3 = position
@@ -42,3 +45,13 @@ func _process(delta):
 	if alvo.distance_to(position)>1:
 		position = lerp(position, Vector3(alvo.x,position.y,alvo.z), 1*delta)
 		
+
+
+
+
+
+func _on_pointer_event(event):
+	if event.event_type == event.Type.PRESSED:
+		print("pointer event ", event)
+		print(name, ' foi clicado pelo pointer VR!')
+		set_seleção(!selecionado)

@@ -25,3 +25,6 @@ func _on_unidade_desescolhida(unidade: Unidade):
 	if is_connected("mandar_ordem", unidade._on_diretor_mandar_ordem):
 		disconnect("mandar_ordem", unidade._on_diretor_mandar_ordem)
 	print(unidades_selecionadas)
+	
+func emitir_ordem(ponto:Vector3):
+	mandar_ordem.emit(ponto)
