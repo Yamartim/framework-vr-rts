@@ -3,6 +3,12 @@ extends Camera3D
 const tam_raio = 1000
 var marcador:PackedScene = preload("res://cenas/marcador.tscn")
 
+@export var vrsim := false
+
+func _ready():
+	if vrsim:
+		queue_free()
+
 func _input(event):
 	if event.is_action_pressed("L_click"):
 		shoot_ray()
