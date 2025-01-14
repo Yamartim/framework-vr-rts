@@ -1,13 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cctm31a5mlmu7"]
+[gd_scene load_steps=12 format=3 uid="uid://cctm31a5mlmu7"]
 
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_0i3lv"]
 [ext_resource type="Script" path="res://scripts/player_vr.gd" id="1_ark1w"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="2_c7aet"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_oear4"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="4_tef3j"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_12xdw"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="5_tx5ow"]
+[ext_resource type="Resource" uid="uid://dmpjtk0l8vh6v" path="res://addons/godot-xr-tools/hands/poses/pose_default_right.tres" id="7_6r3m2"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="8_meyyq"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="9_yu66g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv6vy"]
+albedo_color = Color(1, 1, 0, 1)
 
 [node name="XROrigin3D" type="XROrigin3D"]
 script = ExtResource("1_ark1w")
+
+[node name="PlayerBody" parent="." instance=ExtResource("9_yu66g")]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
@@ -17,17 +27,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="Mao_Esq" instance=ExtResource("1_0i3lv")]
+hand_material_override = SubResource("StandardMaterial3D_qv6vy")
 
-[node name="FunctionPointer" parent="Mao_Esq/LeftHand" instance=ExtResource("2_c7aet")]
+[node name="FunctionPointer" parent="Mao_Esq" instance=ExtResource("2_c7aet")]
 show_target = true
 collision_mask = 5242881
+
+[node name="MovementDirect" parent="Mao_Esq" instance=ExtResource("5_12xdw")]
+strafe = true
 
 [node name="Mao_Dir" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Mao_Dir" instance=ExtResource("3_oear4")]
+default_pose = ExtResource("7_6r3m2")
+
+[node name="XRToolsFunctionPickup" type="Node3D" parent="Mao_Dir"]
+script = ExtResource("5_tx5ow")
+
+[node name="MovementTurn" parent="Mao_Dir" instance=ExtResource("8_meyyq")]
+turn_mode = 2
 
 [node name="StartXR" parent="." instance=ExtResource("4_tef3j")]
 
-[connection signal="pointing_event" from="Mao_Esq/LeftHand/FunctionPointer" to="." method="_on_function_pointer_pointing_event"]
+[connection signal="button_pressed" from="Mao_Esq" to="." method="_on_mao_esq_button_pressed"]
+[connection signal="pointing_event" from="Mao_Esq/FunctionPointer" to="." method="_on_function_pointer_pointing_event"]
