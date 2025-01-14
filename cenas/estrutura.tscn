@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://buctg0yug8gnx"]
+[gd_scene load_steps=5 format=3 uid="uid://buctg0yug8gnx"]
+
+[ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="1_q4q6x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a561h"]
 albedo_color = Color(1, 0.529412, 0, 1)
@@ -17,3 +19,6 @@ mesh = SubResource("BoxMesh_j1d3g")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_s8w7c")
+
+[node name="Inventario" parent="." instance=ExtResource("1_q4q6x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.005, 0)

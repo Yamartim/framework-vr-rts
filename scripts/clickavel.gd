@@ -13,15 +13,19 @@ signal pointer_event(event:XRToolsPointerEvent)
 func _ready():
 	connect("escolhida", %diretor._on_unidade_escolhida)
 	connect("desescolhida", %diretor._on_unidade_desescolhida)
+	
+	pointer_event.connect(_on_pointer_event)
 
 	set_seleção(false)
+	
+	
 
 
-func _on_input_event(camera, event:InputEvent, event_position, normal, shape_idx):
-	if event.is_action_pressed("L_click"):
-		print(name, ' foi clicado')
-		set_seleção(!selecionado)
-		
+#func _on_input_event(camera, event:InputEvent, event_position, normal, shape_idx):
+	#if event.is_action_pressed("L_click"):
+		#print(name, ' foi clicado')
+		#set_seleção(!selecionado)
+		#
 
 func set_seleção(selec: bool):
 	selecionado = selec

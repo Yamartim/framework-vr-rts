@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bkbyr1s24vxsg"]
+[gd_scene load_steps=15 format=3 uid="uid://bkbyr1s24vxsg"]
 
 [ext_resource type="Script" path="res://scripts/rts_cam.gd" id="1_es4np"]
 [ext_resource type="Script" path="res://chão.gd" id="1_i4hj1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://buctg0yug8gnx" path="res://cenas/estrutura.tscn" id="4_wqpad"]
 [ext_resource type="Script" path="res://scripts/diretor.gd" id="5_tj4np"]
 [ext_resource type="PackedScene" uid="uid://cctm31a5mlmu7" path="res://cenas/player_vr.tscn" id="6_by0vs"]
+[ext_resource type="PackedScene" uid="uid://dhilfb7b26kth" path="res://pickable_teste.tscn" id="8_hjdk8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2lx"]
 
@@ -75,12 +76,13 @@ light_color = Color(1, 1, 0.615686, 1)
 light_energy = 0.1
 shadow_enabled = true
 
+[node name="Player" parent="." instance=ExtResource("6_by0vs")]
+transform = Transform3D(0.103383, 0, -0.994642, 0, 1, 0, 0.994642, 0, 0.103383, -0.816974, 0, 0.57641)
+
 [node name="diretor" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("5_tj4np")
 
-[node name="XROrigin3D" parent="." instance=ExtResource("6_by0vs")]
-transform = Transform3D(0.103383, 0, -0.994642, 0, 1, 0, 0.994642, 0, 0.103383, -0.816974, 0, 0.57641)
-initialize = true
+[node name="pickable teste" parent="." instance=ExtResource("8_hjdk8")]
 
 [connection signal="pointer_event" from="chão" to="chão" method="_on_pointer_event"]
