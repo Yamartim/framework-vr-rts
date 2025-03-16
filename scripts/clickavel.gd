@@ -6,13 +6,21 @@ signal desescolhida
 #PRECISA ter um sinal com esse nome pro pointer event emitir
 signal pointer_event(event:XRToolsPointerEvent)
 
-@onready var meshinst : MeshInstance3D = get_node("MeshInstance3D") 
+@onready var diretor := %diretor
+@onready var meshinst := $MeshInstance3D
+@onready var nav_agent := $NavigationAgent3D
+
 @onready var selecionado : bool = false
 @onready var alvo : Vector3 = position
 
+@export var velocidade := 3.0
+@export var inv_inicial := 0
+
 func _ready():
-	connect("escolhida", %diretor._on_unidade_escolhida)
-	connect("desescolhida", %diretor._on_unidade_desescolhida)
+	connect("escolhida", diretor._on_unidade_escolhida)
+	connect("desescolhida", diretor._on_unidade_desescolhida)
+	
+	$Inventario.quantidade = inv_inicial
 	
 	pointer_event.connect(_on_pointer_event)
 
@@ -40,17 +48,18 @@ func set_seleção(selec: bool):
 
 func _on_diretor_mandar_ordem(posicao):
 	if selecionado:
-		alvo = posicao
+		set_alvo(posicao)
+		print('andando de ', global_transform.origin, ' para ', alvo)
+		print('vetor de mov ', (global_transform.origin - posicao).normalized() * velocidade)
 		set_seleção(false)
+
+
+func _physics_process(delta):
 	
-
-func _process(delta):
-	#movimento provisorio, dps mudar pra agentes e navmesh
-	if alvo.distance_to(position)>1:
-		position = lerp(position, Vector3(alvo.x,position.y,alvo.z), 1*delta)
-		
-
-
+	var pos_atual = global_transform.origin
+	var pos_prox = alvo
+	var vetor = (pos_prox - pos_atual).normalized() * velocidade
+	nav_agent.velocity = vetor
 
 
 
@@ -59,3 +68,22 @@ func _on_pointer_event(event):
 		print("pointer event ", event)
 		print(name, ' foi clicado pelo pointer VR!')
 		set_seleção(!selecionado)
+
+func set_alvo(a : Vector3):
+	alvo = a
+	nav_agent.target_position = a
+
+#movimento provisorio, dps mudar pra agentes e navmesh
+func movimento_lerp(delta):
+	if alvo.distance_to(position)>1:
+		position = lerp(position, Vector3(alvo.x,position.y,alvo.z), 1*delta)
+		
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity):
+	velocity = safe_velocity
+	move_and_slide()
+
+
+func _on_navigation_agent_3d_target_reached():
+	pass # Replace with function body.

@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://nvlyy8hyaav6"]
 
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_gcqef"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="2_ai6tf"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_xxnrx"]
-[ext_resource type="Script" path="res://scripts/clickavel.gd" id="4_13ebj"]
+[ext_resource type="Script" uid="uid://g8y4q8xrelus" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_gcqef"]
+[ext_resource type="Script" uid="uid://cn2ivocjudmy2" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="2_ai6tf"]
+[ext_resource type="Script" uid="uid://pxtewg3qg20o" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_xxnrx"]
+[ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/clickavel.gd" id="4_13ebj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbqhn"]
 
@@ -54,7 +54,7 @@ void fragment() {
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_cyrg5")
-shader_parameter/outline_color = null
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnytc"]

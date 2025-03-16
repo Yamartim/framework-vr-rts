@@ -1,13 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cctm31a5mlmu7"]
+[gd_scene load_steps=11 format=3 uid="uid://cctm31a5mlmu7"]
 
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_0i3lv"]
-[ext_resource type="Script" path="res://scripts/player_vr.gd" id="1_ark1w"]
+[ext_resource type="Script" uid="uid://dkdgvsedssvj4" path="res://scripts/player_vr.gd" id="1_ark1w"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="2_c7aet"]
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="3_oear4"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="4_tef3j"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="5_12xdw"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="5_tx5ow"]
-[ext_resource type="Resource" uid="uid://dmpjtk0l8vh6v" path="res://addons/godot-xr-tools/hands/poses/pose_default_right.tres" id="7_6r3m2"]
+[ext_resource type="Script" uid="uid://clr1vdqkb1ual" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="5_tx5ow"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="8_meyyq"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="9_yu66g"]
 
@@ -41,7 +40,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Mao_Dir" instance=ExtResource("3_oear4")]
-default_pose = ExtResource("7_6r3m2")
 
 [node name="XRToolsFunctionPickup" type="Node3D" parent="Mao_Dir"]
 script = ExtResource("5_tx5ow")

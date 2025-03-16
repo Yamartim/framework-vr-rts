@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="FrameworkRTS"
-run/main_scene="res://cenas/teste.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+run/main_scene="res://cenas/levels/teste.tscn"
+config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -70,5 +70,4 @@ renderer/rendering_method.mobile="gl_compatibility"
 [xr]
 
 openxr/enabled=true
-openxr/extensions/hand_tracking=false
 shaders/enabled=true

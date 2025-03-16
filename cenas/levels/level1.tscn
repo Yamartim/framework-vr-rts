@@ -1,0 +1,105 @@
+[gd_scene load_steps=17 format=3 uid="uid://b7fnhp3lrhq5y"]
+
+[ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="2_b6uy7"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_svvr5"]
+[ext_resource type="PackedScene" uid="uid://cctm31a5mlmu7" path="res://cenas/player_vr.tscn" id="5_w486n"]
+[ext_resource type="Script" uid="uid://ceo0ducn6dl5t" path="res://scripts/diretor.gd" id="6_bhmd7"]
+[ext_resource type="PackedScene" uid="uid://dykwp1cw6hmaj" path="res://cenas/instrucoes/uimundo1.tscn" id="6_wu5cj"]
+[ext_resource type="Script" uid="uid://8a1bbkn3iodq" path="res://scripts/chão.gd" id="8_1yqc2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kh1nc"]
+
+[sub_resource type="Sky" id="Sky_6gwwn"]
+sky_material = SubResource("ProceduralSkyMaterial_kh1nc")
+
+[sub_resource type="Environment" id="Environment_fioka"]
+background_mode = 2
+sky = SubResource("Sky_6gwwn")
+ambient_light_source = 3
+ambient_light_color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_wmxbc"]
+vertices = PackedVector3Array(-12, 0.5, -12, -12, 0.5, 12, 12, 0.5, 12, 12, 0.5, -12)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2lx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6xem2"]
+size = Vector2(25, 25)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vooh0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dis1j"]
+transparency = 1
+albedo_color = Color(0.713726, 0.235294, 0.286275, 0.380392)
+
+[sub_resource type="BoxMesh" id="BoxMesh_30tne"]
+material = SubResource("StandardMaterial3D_dis1j")
+size = Vector3(4, 0.75, 4)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_06jej"]
+points = PackedVector3Array(-2, -0.375, -2, -2, 0.375, -2, 2, -0.375, -2, -2, -0.375, 2, -2, 0.375, 2, 2, 0.375, -2, 2, -0.375, 2, 2, 0.375, 2)
+
+[node name="main" type="Node3D"]
+
+[node name="diretor" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_bhmd7")
+
+[node name="entidades" type="Node" parent="."]
+
+[node name="unidade" parent="entidades" instance=ExtResource("2_b6uy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83645, 1.05168, -1.09666)
+
+[node name="unidade2" parent="entidades" instance=ExtResource("2_b6uy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09567, 1.05168, 4.02088)
+
+[node name="unidade3" parent="entidades" instance=ExtResource("2_b6uy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5562, 1.05168, -2.25627)
+
+[node name="graficos" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="graficos"]
+process_mode = 4
+environment = SubResource("Environment_fioka")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="graficos"]
+transform = Transform3D(0.784614, -0.132382, 0.605686, 0, 0.976938, 0.213525, -0.619985, -0.167535, 0.766519, 0, 1.9663, 0)
+light_color = Color(1, 1, 0.615686, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("5_w486n")]
+transform = Transform3D(0.103383, 0, -0.994642, 0, 1, 0, 0.994642, 0, 0.103383, -10.5997, -3.8147e-06, -9.43898)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_wmxbc")
+
+[node name="chão" type="StaticBody3D" parent="NavigationRegion3D"]
+script = ExtResource("8_1yqc2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/chão"]
+material_override = SubResource("StandardMaterial3D_om2lx")
+mesh = SubResource("PlaneMesh_6xem2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/chão"]
+shape = SubResource("WorldBoundaryShape3D_vooh0")
+
+[node name="objetivo" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34487, 0, 8.4077)
+collision_layer = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="objetivo"]
+mesh = SubResource("BoxMesh_30tne")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="objetivo"]
+shape = SubResource("ConvexPolygonShape3D_06jej")
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("5_svvr5")]
+transform = Transform3D(-0.64161, 0, -0.767031, 0, 1, 0, 0.767031, 0, -0.64161, 6.48271, 2.91709, 10.3971)
+scene = ExtResource("6_wu5cj")
+viewport_size = Vector2(800, 600)
+transparent = 0
+unshaded = true
+
+[connection signal="pointer_event" from="NavigationRegion3D/chão" to="NavigationRegion3D/chão" method="_on_pointer_event"]

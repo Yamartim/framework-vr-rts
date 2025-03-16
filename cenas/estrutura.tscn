@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://buctg0yug8gnx"]
+[gd_scene load_steps=6 format=3 uid="uid://buctg0yug8gnx"]
 
 [ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="1_q4q6x"]
 
@@ -12,6 +12,9 @@ size = Vector3(3, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8w7c"]
 size = Vector3(3, 3, 3)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xwo56"]
+size = Vector3(3.25, 3.25, 3.25)
+
 [node name="estrutura" type="StaticBody3D" groups=["Estrutura"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -22,3 +25,8 @@ shape = SubResource("BoxShape3D_s8w7c")
 
 [node name="Inventario" parent="." instance=ExtResource("1_q4q6x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.005, 0)
+
+[node name="areaRecebeItem" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="areaRecebeItem"]
+shape = SubResource("BoxShape3D_xwo56")

@@ -1,9 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bce5vo4m4u7mp"]
+[gd_scene load_steps=9 format=3 uid="uid://bce5vo4m4u7mp"]
 
-[ext_resource type="Script" path="res://scripts/clickavel.gd" id="1_0n7i8"]
-[ext_resource type="PackedScene" uid="uid://c8l60rnugru40" path="res://addons/godot-xr-tools/objects/pickable.tscn" id="2_78vfn"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="2_b27oo"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="4_7l1op"]
+[ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/clickavel.gd" id="1_0n7i8"]
 [ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="5_5q540"]
 
 [sub_resource type="Shader" id="Shader_7ulu2"]
@@ -41,7 +38,7 @@ void fragment() {
 resource_local_to_scene = true
 render_priority = 0
 shader = SubResource("Shader_7ulu2")
-shader_parameter/outline_color = null
+shader_parameter/outline_color = Color(0, 0, 0, 1)
 shader_parameter/outline_width = 2.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxyc1"]
@@ -55,17 +52,9 @@ material = SubResource("StandardMaterial3D_cxyc1")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8dc8n"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uwkyk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ko5pn"]
-cull_mode = 1
-shading_mode = 0
-albedo_color = Color(1, 1, 0, 1)
-grow = true
-grow_amount = 0.3
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_b22qu"]
-material = SubResource("StandardMaterial3D_ko5pn")
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_47f8y"]
+height = 2.1
+radius = 0.75
 
 [node name="unidade" type="CharacterBody3D" groups=["Unidade"]]
 collision_layer = 1048577
@@ -79,31 +68,20 @@ mesh = SubResource("CapsuleMesh_cbike")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8dc8n")
 
-[node name="PickableObject" parent="." instance=ExtResource("2_78vfn")]
-collision_layer = 6
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="PickableObject"]
-shape = SubResource("CapsuleShape3D_uwkyk")
-
-[node name="XRToolsGrabPointHand" type="Marker3D" parent="PickableObject"]
-transform = Transform3D(0.880924, 0.473258, 0, -0.473258, 0.880924, 0, 0, 0, 1, -0.07, 1.0078, -0.12083)
-script = ExtResource("2_b27oo")
-editor_preview_mode = 1
-
-[node name="XRToolsGrabPointHand2" type="Marker3D" parent="PickableObject"]
-transform = Transform3D(0.829896, -0.557918, 0, 0.557918, 0.829896, 0, 0, 0, 1, 0.0698872, 1.00782, -0.120643)
-script = ExtResource("2_b27oo")
-hand = 1
-editor_preview_mode = 1
-
-[node name="XRToolsHighlightVisible" type="Node3D" parent="PickableObject"]
-script = ExtResource("4_7l1op")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PickableObject/XRToolsHighlightVisible"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.00304353, 5.96046e-08, -0.00204504)
-mesh = SubResource("CapsuleMesh_b22qu")
-
 [node name="Inventario" parent="." instance=ExtResource("5_5q540")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_height_offset = 0.1
+avoidance_enabled = true
+
+[node name="AreaPegaItem" type="Area3D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaPegaItem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("CylinderShape3D_47f8y")
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
