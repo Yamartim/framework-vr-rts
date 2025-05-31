@@ -2,6 +2,7 @@
 .godot/
 /android/
 addons/
+assets/
 
 .import/
 export.cfg
