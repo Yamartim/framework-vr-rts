@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bce5vo4m4u7mp"]
 
-[ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/clickavel.gd" id="1_0n7i8"]
+[ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/unidade.gd" id="1_0n7i8"]
 [ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="5_5q540"]
 
 [sub_resource type="Shader" id="Shader_7ulu2"]
