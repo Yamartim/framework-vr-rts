@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bce5vo4m4u7mp"]
+[gd_scene load_steps=10 format=3 uid="uid://bce5vo4m4u7mp"]
 
 [ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/unidade.gd" id="1_0n7i8"]
+[ext_resource type="Script" uid="uid://oc1qlfcrg6nv" path="res://scripts/statemchn/state_machine.gd" id="3_4w8tg"]
 [ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="5_5q540"]
 
 [sub_resource type="Shader" id="Shader_7ulu2"]
@@ -81,6 +82,19 @@ collision_layer = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AreaPegaItem"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 shape = SubResource("CylinderShape3D_47f8y")
+
+[node name="State Machine" type="Node" parent="."]
+script = ExtResource("3_4w8tg")
+
+[node name="Idle" type="Node" parent="State Machine"]
+
+[node name="Selected" type="Node" parent="State Machine"]
+
+[node name="Movendo" type="Node" parent="State Machine"]
+
+[node name="PegandoItem" type="Node" parent="State Machine"]
+
+[node name="LevandoItem" type="Node" parent="State Machine"]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
