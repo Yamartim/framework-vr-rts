@@ -1,0 +1,193 @@
+[gd_scene load_steps=7 format=3 uid="uid://cb7inbdqyvunw"]
+
+[ext_resource type="PackedScene" uid="uid://ln2txvp06vpr" path="res://assets/Robot (1).fbx" id="1_flfva"]
+[ext_resource type="Script" uid="uid://daohry8c6ijtj" path="res://cenas/models/robot_model.gd" id="2_vmavx"]
+
+[sub_resource type="Shader" id="Shader_7ulu2"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode cull_front, unshaded;
+
+uniform vec4 outline_color : source_color;
+uniform float outline_width = 2.0;
+
+void vertex() {
+	vec4 clip_position = PROJECTION_MATRIX * (MODELVIEW_MATRIX * vec4(VERTEX, 1.0));
+	vec3 clip_normal = mat3(PROJECTION_MATRIX) * (mat3(MODELVIEW_MATRIX) * NORMAL);
+	
+	vec2 offset = normalize(clip_normal.xy) / VIEWPORT_SIZE * clip_position.w * outline_width * 2.0;
+	
+	clip_position.xy += offset;
+	
+	POSITION = clip_position;
+}
+
+void fragment() {
+	ALBEDO = outline_color.rgb;
+	if (outline_color.a < 1.0) {
+		ALPHA = outline_color.a;
+	}
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the material.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4q1s"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_7ulu2")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_flfva"]
+resource_local_to_scene = true
+next_pass = SubResource("ShaderMaterial_i4q1s")
+albedo_color = Color(0, 0.290196, 0.733333, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmavx"]
+resource_local_to_scene = true
+resource_name = "Grey"
+next_pass = SubResource("ShaderMaterial_i4q1s")
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.645108, 0.643186, 0.61386, 1)
+emission_enabled = true
+emission = Color(0.713324, 0.711215, 0.679032, 1)
+emission_energy_multiplier = 0.0
+
+[node name="Robot (1)" node_paths=PackedStringArray("meshes") instance=ExtResource("1_flfva")]
+script = ExtResource("2_vmavx")
+meshes = [NodePath("RobotArmature/Skeleton3D/Foot_L_2/Foot_L_2"), NodePath("RobotArmature/Skeleton3D/Torso/Torso"), NodePath("RobotArmature/Skeleton3D/Head_2/Head_2"), NodePath("RobotArmature/Skeleton3D/Shoulder_L_2/Shoulder_L_2"), NodePath("RobotArmature/Skeleton3D/Arm_L/Arm_L"), NodePath("RobotArmature/Skeleton3D/Shoulder_R_2/Shoulder_R_2"), NodePath("RobotArmature/Skeleton3D/Arm_R/Arm_R"), NodePath("RobotArmature/Skeleton3D/Leg_L/Leg_L"), NodePath("RobotArmature/Skeleton3D/LowerLeg_L_2/LowerLeg_L_2"), NodePath("RobotArmature/Skeleton3D/Leg_R/Leg_R"), NodePath("RobotArmature/Skeleton3D/LowerLeg_R_2/LowerLeg_R_2"), NodePath("RobotArmature/Skeleton3D/Foot_R_2/Foot_R_2"), NodePath("RobotArmature/Skeleton3D/Hand_R"), NodePath("RobotArmature/Skeleton3D/Hand_L")]
+material = SubResource("StandardMaterial3D_flfva")
+
+[node name="Skeleton3D" parent="RobotArmature" index="0"]
+bones/1/rotation = Quaternion(2.92124e-08, 0.69555, 0.718478, 1.57053e-07)
+bones/9/rotation = Quaternion(-0.0433809, -0.0141813, 0.0282903, 0.998557)
+bones/10/position = Vector3(1.10595e-11, 0.00309866, -2.44472e-11)
+bones/10/rotation = Quaternion(-0.0309211, -0.00285618, -0.00128305, 0.999517)
+bones/13/rotation = Quaternion(-0.0114497, -0.0532471, -0.9762, 0.209923)
+bones/15/rotation = Quaternion(-0.0545858, -0.689887, 0.0692138, 0.718531)
+bones/17/rotation = Quaternion(0.309992, 0.499337, -0.36494, 0.72207)
+bones/19/rotation = Quaternion(-0.00442114, 0.023824, -0.552072, 0.833444)
+bones/20/rotation = Quaternion(-0.0381108, 0.000934109, -0.699656, 0.713462)
+bones/22/rotation = Quaternion(0.729874, 0.635342, 0.211089, 0.13808)
+bones/23/rotation = Quaternion(-0.248974, 0.627184, 0.630886, -0.382928)
+bones/26/rotation = Quaternion(0.0467354, -0.396111, -0.589061, 0.702794)
+bones/27/rotation = Quaternion(-0.0425872, -0.0183796, -0.699962, 0.712672)
+bones/30/rotation = Quaternion(-0.0680167, 0.483185, -0.584014, 0.648717)
+bones/31/rotation = Quaternion(-0.0425873, -0.0183795, -0.699962, 0.712672)
+bones/33/rotation = Quaternion(-0.012289, 0.0530604, 0.972768, 0.225291)
+bones/35/rotation = Quaternion(0.0435723, 0.80457, 0.0574779, 0.589462)
+bones/37/rotation = Quaternion(0.0897255, -0.705058, 0.255014, 0.6556)
+bones/39/rotation = Quaternion(-0.0436784, -0.0103278, 0.525089, 0.849863)
+bones/40/rotation = Quaternion(0.0348681, -0.0390055, 0.504719, 0.861697)
+bones/42/rotation = Quaternion(0.669465, -0.587013, -0.279996, 0.358935)
+bones/43/rotation = Quaternion(-0.135572, 0.735133, 0.594621, -0.296016)
+bones/46/rotation = Quaternion(-0.504663, -0.573821, 0.135774, 0.630564)
+bones/47/rotation = Quaternion(-0.0418692, -0.0120427, 0.527238, 0.8486)
+bones/49/rotation = Quaternion(-0.115108, 0.858055, -0.363121, -0.344435)
+bones/50/rotation = Quaternion(0.575218, 0.552901, 0.116743, 0.591435)
+bones/51/rotation = Quaternion(0.138603, 0.024903, 0.427063, 0.893189)
+bones/53/rotation = Quaternion(0.985518, 0.0175863, -0.0842846, 0.146085)
+bones/53/scale = Vector3(1, 1, 1.00002)
+bones/55/rotation = Quaternion(0.277154, 1.31885e-07, -7.68166e-08, 0.960825)
+bones/58/rotation = Quaternion(0.979527, -0.0257471, 0.137311, 0.144949)
+bones/58/scale = Vector3(1, 1, 1.00002)
+bones/60/rotation = Quaternion(0.277154, -3.05388e-07, 3.92564e-08, 0.960826)
+bones/65/rotation = Quaternion(5.08964e-07, 0.69555, 0.718478, 6.19279e-07)
+
+[node name="Foot_L_2" parent="RobotArmature/Skeleton3D" index="0"]
+transform = Transform3D(1, 9.58667e-08, 6.33051e-08, -9.58665e-08, 1, 7.56234e-07, -6.3305e-08, -7.07805e-07, 1, 0.00624058, -0.00191114, 0.00397664)
+bone_idx = 2
+
+[node name="Foot_L_2" parent="RobotArmature/Skeleton3D/Foot_L_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Torso" parent="RobotArmature/Skeleton3D" index="1"]
+transform = Transform3D(1, 5.83782e-11, -5.8165e-11, -5.82077e-11, 1, 0, 5.82361e-11, 0, 1, -2.71564e-05, 0.00019581, 0.0220934)
+bone_idx = 5
+
+[node name="Torso" parent="RobotArmature/Skeleton3D/Torso" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+surface_material_override/1 = SubResource("StandardMaterial3D_vmavx")
+
+[node name="Head_2" parent="RobotArmature/Skeleton3D" index="2"]
+transform = Transform3D(0.998071, 0.0405853, -0.0469699, -0.0377838, 0.997538, 0.05907, 0.0492517, -0.0571814, 0.997148, -0.000521874, 1.13436e-05, 0.0365313)
+bone_idx = 11
+
+[node name="Head_2" parent="RobotArmature/Skeleton3D/Head_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+surface_material_override/1 = SubResource("StandardMaterial3D_vmavx")
+
+[node name="Shoulder_L_2" parent="RobotArmature/Skeleton3D" index="3"]
+transform = Transform3D(0.434578, 2.28881e-07, 0.900634, 1.59487e-07, 0.999999, -3.98487e-07, -0.900634, 2.58183e-07, 0.434578, 0.00582681, 0.000209939, 0.0240805)
+bone_idx = 14
+
+[node name="Shoulder_L_2" parent="RobotArmature/Skeleton3D/Shoulder_L_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Arm_L" parent="RobotArmature/Skeleton3D" index="4"]
+transform = Transform3D(0.435433, -0.00201528, 0.900219, 0.233061, 0.966155, -0.110568, -0.869529, 0.25795, 0.421166, 0.00265002, -0.00130695, 0.0288456)
+bone_idx = 16
+
+[node name="Arm_L" parent="RobotArmature/Skeleton3D/Arm_L" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Shoulder_R_2" parent="RobotArmature/Skeleton3D" index="5"]
+transform = Transform3D(0.448449, -4.62585e-08, -0.893808, -9.33184e-08, 1, -1.01541e-07, 0.893808, 8.79063e-08, 0.448449, -0.00636986, 0.000209939, 0.0240748)
+bone_idx = 34
+
+[node name="Shoulder_R_2" parent="RobotArmature/Skeleton3D/Shoulder_R_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Arm_R" parent="RobotArmature/Skeleton3D" index="6"]
+transform = Transform3D(0.101816, -7.45058e-08, -0.202931, 0.0178376, 0.226162, 0.0089495, 0.202145, -0.0199567, 0.101422, -0.0082569, -0.000402435, 0.0201812)
+bone_idx = 36
+
+[node name="Arm_R" parent="RobotArmature/Skeleton3D/Arm_R" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Leg_L" parent="RobotArmature/Skeleton3D" index="7"]
+transform = Transform3D(0.984221, -0.175534, -0.0223149, 0.176784, 0.98087, 0.0816337, 0.0075583, -0.0842995, 0.996414, 0.00643831, -0.000287188, 0.0118699)
+bone_idx = 54
+
+[node name="Leg_L" parent="RobotArmature/Skeleton3D/Leg_L" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="LowerLeg_L_2" parent="RobotArmature/Skeleton3D" index="8"]
+transform = Transform3D(0.984156, -0.177236, 0.00489874, 0.177099, 0.981346, -0.0749521, 0.00847668, 0.0746194, 0.997178, 0.0068437, -0.00214598, 0.00371967)
+bone_idx = 56
+
+[node name="LowerLeg_L_2" parent="RobotArmature/Skeleton3D/LowerLeg_L_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Leg_R" parent="RobotArmature/Skeleton3D" index="9"]
+transform = Transform3D(0.962472, 0.267768, 0.0441125, -0.271059, 0.956436, 0.108364, -0.0131745, -0.116261, 0.993133, -0.00666554, -0.000179452, 0.0118434)
+bone_idx = 59
+
+[node name="Leg_R" parent="RobotArmature/Skeleton3D/Leg_R" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="LowerLeg_R_2" parent="RobotArmature/Skeleton3D" index="10"]
+transform = Transform3D(0.962589, 0.270827, -0.00860253, -0.270697, 0.959729, -0.0750248, -0.0120628, 0.0745323, 0.997148, -0.00730422, -0.00206399, 0.00372037)
+bone_idx = 61
+
+[node name="LowerLeg_R_2" parent="RobotArmature/Skeleton3D/LowerLeg_R_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Foot_R_2" parent="RobotArmature/Skeleton3D" index="11"]
+transform = Transform3D(1, 9.58656e-08, -3.48739e-08, -9.58658e-08, 1, 6.4075e-07, 3.48747e-08, -5.66244e-07, 1, -0.00637997, -0.00191114, 0.00397664)
+bone_idx = 66
+
+[node name="Foot_R_2" parent="RobotArmature/Skeleton3D/Foot_R_2" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+
+[node name="Hand_R" parent="RobotArmature/Skeleton3D" index="12"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+surface_material_override/1 = SubResource("StandardMaterial3D_vmavx")
+
+[node name="Hand_L" parent="RobotArmature/Skeleton3D" index="13"]
+surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
+surface_material_override/1 = SubResource("StandardMaterial3D_vmavx")
