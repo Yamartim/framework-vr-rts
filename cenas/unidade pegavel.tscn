@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://nvlyy8hyaav6"]
 
-[ext_resource type="Script" uid="uid://g8y4q8xrelus" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_gcqef"]
-[ext_resource type="Script" uid="uid://cn2ivocjudmy2" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="2_ai6tf"]
-[ext_resource type="Script" uid="uid://pxtewg3qg20o" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_xxnrx"]
+[ext_resource type="Script" uid="uid://b1bro4qgtni2e" path="res://addons/godot-xr-tools/objects/pickable.gd" id="1_gcqef"]
+[ext_resource type="Script" uid="uid://o4d6dbpcyi32" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand.gd" id="2_ai6tf"]
+[ext_resource type="Script" uid="uid://p06la8ofcl4s" path="res://addons/godot-xr-tools/objects/highlight/highlight_visible.gd" id="3_xxnrx"]
 [ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/unidade.gd" id="4_13ebj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_lbqhn"]
