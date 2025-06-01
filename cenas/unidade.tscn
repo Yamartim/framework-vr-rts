@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bce5vo4m4u7mp"]
+[gd_scene load_steps=14 format=3 uid="uid://bce5vo4m4u7mp"]
 
 [ext_resource type="Script" uid="uid://br544khhkl80h" path="res://scripts/unidade.gd" id="1_0n7i8"]
 [ext_resource type="Script" uid="uid://oc1qlfcrg6nv" path="res://scripts/statemchn/state_machine.gd" id="3_4w8tg"]
+[ext_resource type="PackedScene" uid="uid://cb7inbdqyvunw" path="res://cenas/models/robot_model.tscn" id="4_p1g4i"]
 [ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="5_5q540"]
 
 [sub_resource type="Shader" id="Shader_7ulu2"]
+resource_local_to_scene = true
 code = "shader_type spatial;
 render_mode cull_front, unshaded;
 
@@ -57,13 +59,59 @@ material = SubResource("StandardMaterial3D_cxyc1")
 height = 2.1
 radius = 0.75
 
+[sub_resource type="Shader" id="Shader_p1g4i"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode cull_front, unshaded;
+
+uniform vec4 outline_color : source_color;
+uniform float outline_width = 2.0;
+
+void vertex() {
+	vec4 clip_position = PROJECTION_MATRIX * (MODELVIEW_MATRIX * vec4(VERTEX, 1.0));
+	vec3 clip_normal = mat3(PROJECTION_MATRIX) * (mat3(MODELVIEW_MATRIX) * NORMAL);
+	
+	vec2 offset = normalize(clip_normal.xy) / VIEWPORT_SIZE * clip_position.w * outline_width * 2.0;
+	
+	clip_position.xy += offset;
+	
+	POSITION = clip_position;
+}
+
+void fragment() {
+	ALBEDO = outline_color.rgb;
+	if (outline_color.a < 1.0) {
+		ALPHA = outline_color.a;
+	}
+}
+
+//void light() {
+	// Called for every pixel for every light affecting the material.
+	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dgckr"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_p1g4i")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fayjf"]
+resource_local_to_scene = true
+next_pass = SubResource("ShaderMaterial_dgckr")
+albedo_color = Color(0, 0.290196, 0.733333, 1)
+
 [node name="unidade" type="CharacterBody3D" groups=["Unidade"]]
 collision_layer = 1048577
 collision_mask = 1048577
 script = ExtResource("1_0n7i8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00304353, 5.96046e-08, -0.00204504)
+visible = false
 mesh = SubResource("CapsuleMesh_cbike")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -95,6 +143,10 @@ script = ExtResource("3_4w8tg")
 [node name="PegandoItem" type="Node" parent="State Machine"]
 
 [node name="LevandoItem" type="Node" parent="State Machine"]
+
+[node name="robot-model" parent="." instance=ExtResource("4_p1g4i")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, -1, 0)
+material = SubResource("StandardMaterial3D_fayjf")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

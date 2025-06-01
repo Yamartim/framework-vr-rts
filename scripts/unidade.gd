@@ -7,7 +7,8 @@ signal desescolhida
 signal pointer_event(event:XRToolsPointerEvent)
 
 @onready var diretor := %diretor
-@onready var meshinst := $MeshInstance3D
+#@onready var meshinst := $MeshInstance3D #mesh placeholder
+@onready var mesh :RobotModel= $"robot-model"
 @onready var nav_agent := $NavigationAgent3D
 
 @onready var selecionado : bool = false
@@ -37,12 +38,13 @@ func _ready():
 
 func set_seleção(selec: bool):
 	selecionado = selec
+	mesh.mostrar_outline(selec)
 	if selecionado:
-		meshinst.mesh.surface_get_material(0).next_pass.set('shader_parameter/outline_width', 3.0)
+		#meshinst.mesh.surface_get_material(0).next_pass.set('shader_parameter/outline_width', 3.0)
 		escolhida.emit(self)
 
 	else: 
-		meshinst.mesh.surface_get_material(0).next_pass.set('shader_parameter/outline_width', 0.0)
+		#meshinst.mesh.surface_get_material(0).next_pass.set('shader_parameter/outline_width', 0.0)
 		desescolhida.emit(self)
 
 
@@ -54,7 +56,7 @@ func _on_diretor_mandar_ordem(posicao):
 		set_seleção(false)
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	
 	var pos_atual = global_transform.origin
 	var pos_prox = alvo
