@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cb7inbdqyvunw"]
 
-[ext_resource type="PackedScene" uid="uid://ln2txvp06vpr" path="res://assets/Robot (1).fbx" id="1_flfva"]
-[ext_resource type="Script" uid="uid://daohry8c6ijtj" path="res://cenas/models/robot_model.gd" id="2_vmavx"]
+[ext_resource type="PackedScene" uid="uid://ln2txvp06vpr" path="res://assets/Robot (1).fbx" id="1_hmjxq"]
+[ext_resource type="Script" uid="uid://daohry8c6ijtj" path="res://scripts/robot_model.gd" id="2_btdxw"]
 
 [sub_resource type="Shader" id="Shader_7ulu2"]
 resource_local_to_scene = true
@@ -57,8 +57,8 @@ emission_enabled = true
 emission = Color(0.713324, 0.711215, 0.679032, 1)
 emission_energy_multiplier = 0.0
 
-[node name="Robot (1)" node_paths=PackedStringArray("meshes") instance=ExtResource("1_flfva")]
-script = ExtResource("2_vmavx")
+[node name="Robot (1)" node_paths=PackedStringArray("meshes") instance=ExtResource("1_hmjxq")]
+script = ExtResource("2_btdxw")
 meshes = [NodePath("RobotArmature/Skeleton3D/Foot_L_2/Foot_L_2"), NodePath("RobotArmature/Skeleton3D/Torso/Torso"), NodePath("RobotArmature/Skeleton3D/Head_2/Head_2"), NodePath("RobotArmature/Skeleton3D/Shoulder_L_2/Shoulder_L_2"), NodePath("RobotArmature/Skeleton3D/Arm_L/Arm_L"), NodePath("RobotArmature/Skeleton3D/Shoulder_R_2/Shoulder_R_2"), NodePath("RobotArmature/Skeleton3D/Arm_R/Arm_R"), NodePath("RobotArmature/Skeleton3D/Leg_L/Leg_L"), NodePath("RobotArmature/Skeleton3D/LowerLeg_L_2/LowerLeg_L_2"), NodePath("RobotArmature/Skeleton3D/Leg_R/Leg_R"), NodePath("RobotArmature/Skeleton3D/LowerLeg_R_2/LowerLeg_R_2"), NodePath("RobotArmature/Skeleton3D/Foot_R_2/Foot_R_2"), NodePath("RobotArmature/Skeleton3D/Hand_R"), NodePath("RobotArmature/Skeleton3D/Hand_L")]
 material = SubResource("StandardMaterial3D_flfva")
 
