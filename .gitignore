@@ -3,6 +3,7 @@
 /android/
 addons/
 assets/
+build/
 
 .import/
 export.cfg
