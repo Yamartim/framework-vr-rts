@@ -4,7 +4,7 @@ class_name RobotModel
 @export var meshes: Array[MeshInstance3D] = []
 @export var material: Material = null
 
-var outline_selec := 4.0
+var outline_selec := 6.0
 var outline_unselec := 0.0
 
 func mostrar_outline(toggle:bool):
