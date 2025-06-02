@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="9_yu66g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv6vy"]
+resource_local_to_scene = true
 albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfxmj"]
@@ -79,6 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Mao_Dir" instance=ExtResource("3_oear4")]
+hand_material_override = SubResource("StandardMaterial3D_qv6vy")
 
 [node name="XRToolsFunctionPickup" type="Node3D" parent="Mao_Dir"]
 script = ExtResource("5_tx5ow")
@@ -91,3 +93,5 @@ turn_mode = 2
 [connection signal="button_pressed" from="Mao_Esq" to="." method="_on_mao_esq_button_pressed"]
 [connection signal="button_released" from="Mao_Esq" to="." method="_on_mao_esq_button_released"]
 [connection signal="pointing_event" from="Mao_Esq/FunctionPointer" to="." method="_on_function_pointer_pointing_event"]
+[connection signal="button_pressed" from="Mao_Dir" to="." method="_on_mao_dir_button_pressed"]
+[connection signal="button_released" from="Mao_Dir" to="." method="_on_mao_dir_button_released"]

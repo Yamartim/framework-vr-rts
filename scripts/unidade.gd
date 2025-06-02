@@ -91,3 +91,10 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 func _on_navigation_agent_3d_target_reached():
 	pass # Replace with function body.
+
+func _on_direcional_input(btnname:String, value:Vector2):
+	#print("recebendo inputs...", btnname, value)
+	if %Player.dir_apontando:
+		var mao :XRController3D= %Player/Mao_Dir
+		var direct_alvo = global_position + Vector3(value.x, 0, -value.y).rotated(Vector3.UP, mao.global_rotation.y)*10000
+		set_alvo(direct_alvo)

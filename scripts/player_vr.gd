@@ -11,6 +11,7 @@ extends XROrigin3D
 var chamar_selecionados := false
 var cone_selecao_on := false
 var cone_deselecao_on := false
+var dir_apontando := false
 
 func _ready():
 	if !Engine.is_editor_hint() and initialize:
@@ -118,3 +119,20 @@ func _on_selecao_body_entered(body: Node3D) -> void:
 func _on_deselecao_body_entered(body: Node3D) -> void:
 	if body is Unidade:
 		body.set_seleção(false)
+
+
+func _on_mao_dir_button_pressed(btnname: String) -> void:
+	var mao_dir_paralel_chao :bool= abs($Mao_Dir.global_rotation_degrees.x) < 50
+	var unidades_sel = !%diretor.unidades_selecionadas.is_empty()
+	var cond_apontar :bool= btnname == 'grip_click' and unidades_sel and mao_dir_paralel_chao
+	if cond_apontar:
+		dir_apontando = true
+		$Mao_Dir/MovementTurn.enabled = false
+		$Mao_Dir/RightHand.hand_material_override.albedo_color = Color.WEB_GREEN
+
+
+func _on_mao_dir_button_released(btnname: String) -> void:
+	if btnname == 'grip_click':
+		dir_apontando = false
+		$Mao_Dir/MovementTurn.enabled = true
+		$Mao_Dir/RightHand.hand_material_override.albedo_color = Color.YELLOW
