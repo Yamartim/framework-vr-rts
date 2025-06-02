@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctvkdg2ywowdt"]
+
+[ext_resource type="PackedScene" uid="uid://bgpcl8f8tgcvs" path="res://assets/Chest/Chest.fbx" id="1_aifvw"]
+
+[node name="Chest" instance=ExtResource("1_aifvw")]
+
+[node name="Skeleton3D" parent="Chest_Armature" index="0"]
+bones/2/rotation = Quaternion(0.702659, -3.39307e-07, -3.35078e-07, 0.711526)
