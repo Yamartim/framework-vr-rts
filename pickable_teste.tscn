@@ -7,17 +7,6 @@
 [ext_resource type="Script" uid="uid://dub7npibvftxy" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="5_c0ah2"]
 [ext_resource type="Animation" uid="uid://s1vqcxyqcvea" path="res://addons/godot-xr-tools/hands/animations/right/Grip 5.res" id="6_5hdl8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvnmp"]
-albedo_color = Color(0.415686, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_2gxgg"]
-material = SubResource("StandardMaterial3D_qvnmp")
-radius = 0.1
-height = 0.2
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_yup5j"]
-radius = 0.1
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrwvx"]
 cull_mode = 1
 shading_mode = 0
@@ -29,6 +18,17 @@ grow_amount = 0.1
 material = SubResource("StandardMaterial3D_rrwvx")
 radius = 0.075
 height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvnmp"]
+albedo_color = Color(0.415686, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2gxgg"]
+material = SubResource("StandardMaterial3D_qvnmp")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yup5j"]
+radius = 0.1
 
 [sub_resource type="Resource" id="Resource_du6ce"]
 script = ExtResource("5_c0ah2")
@@ -44,19 +44,20 @@ closed_pose = ExtResource("6_5hdl8")
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_p1t1n")
+picked_up_layer = 67584
+
+[node name="XRToolsHighlightVisible" type="Node3D" parent="."]
+script = ExtResource("2_d3a5b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XRToolsHighlightVisible"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_khp4l")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_2gxgg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_yup5j")
-
-[node name="XRToolsHighlightVisible" type="Node3D" parent="."]
-script = ExtResource("2_d3a5b")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="XRToolsHighlightVisible"]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.00304353, 5.96046e-08, -0.00204504)
-mesh = SubResource("SphereMesh_khp4l")
 
 [node name="XRToolsGrabPointHand" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0650038, 0.0655823, -0.105704)
