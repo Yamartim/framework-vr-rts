@@ -15,13 +15,13 @@ signal pointer_event(event:XRToolsPointerEvent)
 @onready var alvo : Vector3 = position
 
 @export var velocidade := 3.0
-@export var inv_inicial := 0
+#@export var inv_inicial := 0
 
 func _ready():
 	connect("escolhida", diretor._on_unidade_escolhida)
 	connect("desescolhida", diretor._on_unidade_desescolhida)
 	
-	$Inventario.quantidade = inv_inicial
+	#$Inventario.quantidade = inv_inicial
 	
 	pointer_event.connect(_on_pointer_event)
 
