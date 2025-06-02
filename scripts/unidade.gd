@@ -84,6 +84,7 @@ func movimento_lerp(delta):
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	velocity = safe_velocity
+	look_at(Vector3(nav_agent.velocity.x+global_position.x ,position.y,nav_agent.velocity.z+global_position.z), Vector3.UP, true)
 	move_and_slide()
 
 
