@@ -104,8 +104,8 @@ next_pass = SubResource("ShaderMaterial_dgckr")
 albedo_color = Color(0, 0.290196, 0.733333, 1)
 
 [node name="unidade" type="CharacterBody3D" groups=["Unidade"]]
-collision_layer = 1048577
-collision_mask = 1048577
+collision_layer = 1048579
+collision_mask = 1048579
 script = ExtResource("1_0n7i8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

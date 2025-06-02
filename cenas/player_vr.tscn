@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cctm31a5mlmu7"]
+[gd_scene load_steps=15 format=3 uid="uid://cctm31a5mlmu7"]
 
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_0i3lv"]
 [ext_resource type="Script" uid="uid://dkdgvsedssvj4" path="res://scripts/player_vr.gd" id="1_ark1w"]
@@ -12,6 +12,26 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv6vy"]
 albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfxmj"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.0166667, 1, 0, 0.215686)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5fc43"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_jfxmj")
+top_radius = 3.0
+bottom_radius = 3.0
+height = 20.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jfxmj"]
+height = 20.0
+radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5fc43"]
+transparency = 1
+albedo_color = Color(0.4, 0, 1, 0.215686)
 
 [node name="XROrigin3D" type="XROrigin3D"]
 script = ExtResource("1_ark1w")
@@ -35,6 +55,25 @@ collision_mask = 5242881
 [node name="MovementDirect" parent="Mao_Esq" instance=ExtResource("5_12xdw")]
 strafe = true
 
+[node name="cone_selecao" type="MeshInstance3D" parent="Mao_Esq"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10.2)
+mesh = SubResource("CylinderMesh_5fc43")
+skeleton = NodePath("")
+
+[node name="sel_cast" type="ShapeCast3D" parent="Mao_Esq/cone_selecao"]
+shape = SubResource("CylinderShape3D_jfxmj")
+collision_mask = 2
+
+[node name="cone_deselecao" type="MeshInstance3D" parent="Mao_Esq"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -10.2)
+mesh = SubResource("CylinderMesh_5fc43")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_5fc43")
+
+[node name="desel_cast" type="ShapeCast3D" parent="Mao_Esq/cone_deselecao"]
+shape = SubResource("CylinderShape3D_jfxmj")
+collision_mask = 2
+
 [node name="Mao_Dir" type="XRController3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
@@ -50,4 +89,5 @@ turn_mode = 2
 [node name="StartXR" parent="." instance=ExtResource("4_tef3j")]
 
 [connection signal="button_pressed" from="Mao_Esq" to="." method="_on_mao_esq_button_pressed"]
+[connection signal="button_released" from="Mao_Esq" to="." method="_on_mao_esq_button_released"]
 [connection signal="pointing_event" from="Mao_Esq/FunctionPointer" to="." method="_on_function_pointer_pointing_event"]
