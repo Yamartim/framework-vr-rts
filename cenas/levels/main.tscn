@@ -1,0 +1,137 @@
+[gd_scene load_steps=23 format=3 uid="uid://bkbyr1s24vxsg"]
+
+[ext_resource type="Script" uid="uid://dy8e0kem6xv3v" path="res://scripts/rts_cam.gd" id="1_es4np"]
+[ext_resource type="Script" uid="uid://8a1bbkn3iodq" path="res://scripts/chão.gd" id="1_i4hj1"]
+[ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="2_yx03h"]
+[ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="3_pchc1"]
+[ext_resource type="PackedScene" uid="uid://buctg0yug8gnx" path="res://cenas/estrutura.tscn" id="4_wqpad"]
+[ext_resource type="Script" uid="uid://ceo0ducn6dl5t" path="res://scripts/diretor.gd" id="5_tj4np"]
+[ext_resource type="PackedScene" uid="uid://cctm31a5mlmu7" path="res://cenas/player_vr.tscn" id="6_by0vs"]
+[ext_resource type="PackedScene" uid="uid://dhilfb7b26kth" path="res://pickable_teste.tscn" id="8_hjdk8"]
+[ext_resource type="PackedScene" uid="uid://c60d6lpjvsq3h" path="res://assets/Tower/Tower.fbx" id="10_wxlaq"]
+[ext_resource type="PackedScene" uid="uid://bv3pobsx645pq" path="res://assets/Fruit/Fruit.fbx" id="11_fyxq0"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="15_q38yo"]
+[ext_resource type="PackedScene" uid="uid://bo3apnl4s68nw" path="res://cenas/instrucoes/ui-controles.tscn" id="16_lq6sh"]
+[ext_resource type="PackedScene" uid="uid://fe3c56kh7v7j" path="res://cenas/instrucoes/ui-creditos.tscn" id="17_qggcn"]
+[ext_resource type="PackedScene" uid="uid://eiag8tqod3ta" path="res://cenas/instrucoes/ui-introducao.tscn" id="18_rimhj"]
+[ext_resource type="PackedScene" uid="uid://p07ityrru7yb" path="res://cenas/instrucoes/ui-menu-mestre.tscn" id="19_ntkck"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jl6le"]
+vertices = PackedVector3Array(-7, 0.5, 2, -6, 0.5, 2.25, -5.75, 0.5, 1.25, -8, 0.5, 2.5, -6, 0.5, -2.75, -3.75, 0.5, -3, -3.75, 0.5, -24.5, -24.5, 0.5, 4, -8.25, 0.5, 4, -24.5, 0.5, -24.5, -1.75, 0.5, 0.5, 1.5, 0.5, 5.25, 3.5, 0.5, 5.5, -1.75, 0.5, -2.75, 24.5, 0.5, 6.25, 24.5, 0.5, -24.5, 3.75, 0.5, 6.25, -4.75, 2.25, -1.5, -5, 2, -2, -5, 2, 0, -4.5, 2, -0.25, -3, 2, -2, -3.25, 2.25, -1.5, -3, 2, 0, -3.25, 2.25, -0.5, -4.75, 0.5, 3, -2.25, 0.5, 1.25, 0.75, 0.5, 7, 0.75, 0.5, 5.75, -4.75, 0.5, 5, -6, 0.5, 6, -6.75, 0.5, 6, -6.75, 0.5, 24.5, 2, 0.5, 24.5, 2, 0.5, 7.5, -8.25, 0.5, 5.25, -24.5, 0.5, 24.5, 3.5, 0.5, 7, 24.5, 0.5, 24.5)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 4), PackedInt32Array(6, 5, 4), PackedInt32Array(3, 8, 7), PackedInt32Array(3, 7, 4), PackedInt32Array(4, 7, 9), PackedInt32Array(4, 9, 6), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(12, 13, 14), PackedInt32Array(14, 13, 6), PackedInt32Array(14, 6, 15), PackedInt32Array(12, 14, 16), PackedInt32Array(13, 5, 6), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(22, 17, 21), PackedInt32Array(21, 17, 18), PackedInt32Array(24, 23, 20), PackedInt32Array(20, 23, 19), PackedInt32Array(24, 22, 23), PackedInt32Array(23, 22, 21), PackedInt32Array(1, 2, 25), PackedInt32Array(25, 2, 26), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(25, 26, 29), PackedInt32Array(29, 26, 28), PackedInt32Array(28, 26, 11), PackedInt32Array(11, 26, 10), PackedInt32Array(30, 27, 31), PackedInt32Array(31, 27, 34), PackedInt32Array(31, 34, 33), PackedInt32Array(31, 33, 32), PackedInt32Array(7, 8, 35), PackedInt32Array(35, 31, 7), PackedInt32Array(7, 31, 32), PackedInt32Array(7, 32, 36), PackedInt32Array(33, 34, 37), PackedInt32Array(37, 16, 33), PackedInt32Array(33, 16, 14), PackedInt32Array(33, 14, 38)]
+geometry_source_geometry_mode = 1
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_vooh0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2lx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6xem2"]
+size = Vector2(50, 50)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kh1nc"]
+
+[sub_resource type="Sky" id="Sky_6gwwn"]
+sky_material = SubResource("ProceduralSkyMaterial_kh1nc")
+
+[sub_resource type="Environment" id="Environment_fioka"]
+background_mode = 2
+sky = SubResource("Sky_6gwwn")
+ambient_light_source = 3
+ambient_light_color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="main" type="Node3D"]
+
+[node name="diretor" type="Node" parent="." groups=["Diretor"]]
+unique_name_in_owner = true
+script = ExtResource("5_tj4np")
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("6_by0vs")]
+unique_name_in_owner = true
+transform = Transform3D(0.103383, 0, -0.994642, 0, 1, 0, 0.994642, 0, 0.103383, -0.816974, 0, 0.57641)
+initialize_passthrough = true
+vrsim = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939931, 0.341364, 0, -0.341364, 0.939931, 0, 6.38124, 15.4855)
+script = ExtResource("1_es4np")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_jl6le")
+
+[node name="chão" type="StaticBody3D" parent="." groups=["Chao", "navigation_mesh_source_group"]]
+script = ExtResource("1_i4hj1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chão"]
+shape = SubResource("WorldBoundaryShape3D_vooh0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="chão"]
+material_override = SubResource("StandardMaterial3D_om2lx")
+mesh = SubResource("PlaneMesh_6xem2")
+
+[node name="entidades__teste" type="Node" parent="."]
+
+[node name="unidade" parent="entidades__teste" instance=ExtResource("2_yx03h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53927, 1.05168, 0.171121)
+
+[node name="unidade2" parent="entidades__teste" instance=ExtResource("2_yx03h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.62139, 1.05168, 3.18283)
+
+[node name="unidade3" parent="entidades__teste" instance=ExtResource("2_yx03h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.32055, 1.05168, 1.67139)
+
+[node name="recurso2" parent="entidades__teste" instance=ExtResource("3_pchc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.607, 0, 4.046)
+
+[node name="recurso" parent="entidades__teste" instance=ExtResource("3_pchc1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.97042, 1.032, 6.31532)
+
+[node name="estrutura" parent="entidades__teste" instance=ExtResource("4_wqpad")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1)
+
+[node name="pickable teste" parent="entidades__teste" instance=ExtResource("8_hjdk8")]
+
+[node name="graficos" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="graficos"]
+process_mode = 4
+environment = SubResource("Environment_fioka")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="graficos"]
+transform = Transform3D(0.784614, -0.132382, 0.605686, 0, 0.976938, 0.213525, -0.619985, -0.167535, 0.766519, 0, 1.9663, 0)
+light_color = Color(1, 1, 0.615686, 1)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="objs cenario" type="Node3D" parent="graficos"]
+
+[node name="Tower" parent="graficos/objs cenario" instance=ExtResource("10_wxlaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.86547, 0.0962319, -19.594)
+
+[node name="Fruit" parent="graficos/objs cenario" instance=ExtResource("11_fyxq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09218, 0.33171, 4.01685)
+
+[node name="levels" type="Node" parent="."]
+
+[node name="informacoes" type="Node" parent="."]
+
+[node name="intro" parent="informacoes" instance=ExtResource("15_q38yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 3.05702, -16.9991)
+scene = ExtResource("18_rimhj")
+scene_properties_keys = PackedStringArray()
+
+[node name="creditos" parent="informacoes" instance=ExtResource("15_q38yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 3.05702, -16.9991)
+scene = ExtResource("17_qggcn")
+scene_properties_keys = PackedStringArray()
+
+[node name="controles" parent="informacoes" instance=ExtResource("15_q38yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 3.05702, -16.9991)
+scene = ExtResource("16_lq6sh")
+scene_properties_keys = PackedStringArray()
+
+[node name="menu" parent="informacoes" instance=ExtResource("15_q38yo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53674e-07, 3.05702, -16.9991)
+scene = ExtResource("19_ntkck")
+scene_properties_keys = PackedStringArray()
+
+[connection signal="pointer_event" from="chão" to="chão" method="_on_pointer_event"]

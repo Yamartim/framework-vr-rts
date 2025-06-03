@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://c78nmx4i22rlc"]
+
+[ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="1_xqvxg"]
+[ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="2_2pv5e"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_bf2hp"]
+[ext_resource type="PackedScene" uid="uid://djopr0pcq0w5" path="res://cenas/instrucoes/ui-mundo2.tscn" id="4_bhgvl"]
+
+[node name="Level2" type="Node3D"]
+
+[node name="Viewport2Din3D" parent="." instance=ExtResource("3_bf2hp")]
+transform = Transform3D(-0.64161, 0, -0.767031, 0, 1, 0, 0.767031, 0, -0.64161, 6.48271, 2.91709, 10.3971)
+scene = ExtResource("4_bhgvl")
+viewport_size = Vector2(800, 600)
+transparent = 0
+unshaded = true
+scene_properties_keys = PackedStringArray()
+
+[node name="recurso3" parent="." instance=ExtResource("2_2pv5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20988, 0, -0.0848875)
+
+[node name="recurso2" parent="." instance=ExtResource("2_2pv5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74407, 0, 5.67579)
+
+[node name="recurso" parent="." instance=ExtResource("2_2pv5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18226, 0, 8.99202)
+
+[node name="unidade3" parent="." instance=ExtResource("1_xqvxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5562, 1.05168, -2.25627)
+
+[node name="unidade2" parent="." instance=ExtResource("1_xqvxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09567, 1.05168, 4.02088)
+
+[node name="unidade" parent="." instance=ExtResource("1_xqvxg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83645, 1.05168, -1.09666)

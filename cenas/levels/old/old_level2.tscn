@@ -1,12 +1,12 @@
 [gd_scene load_steps=15 format=3 uid="uid://bl6q4lysdii04"]
 
-[ext_resource type="Script" uid="uid://ceo0ducn6dl5t" path="res://scripts/diretor.gd" id="1_squnt"]
-[ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="2_8jis2"]
-[ext_resource type="PackedScene" uid="uid://cctm31a5mlmu7" path="res://cenas/player_vr.tscn" id="3_eojme"]
-[ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="3_yjt0p"]
-[ext_resource type="Script" uid="uid://8a1bbkn3iodq" path="res://scripts/chão.gd" id="4_4h60g"]
-[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="5_xs7qo"]
-[ext_resource type="PackedScene" uid="uid://djopr0pcq0w5" path="res://cenas/instrucoes/uimundo2.tscn" id="7_tlibl"]
+[ext_resource type="Script" uid="uid://ceo0ducn6dl5t" path="res://scripts/diretor.gd" id="1_oinid"]
+[ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="2_g0bnd"]
+[ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="3_4b77h"]
+[ext_resource type="PackedScene" uid="uid://cctm31a5mlmu7" path="res://cenas/player_vr.tscn" id="4_yryd3"]
+[ext_resource type="Script" uid="uid://8a1bbkn3iodq" path="res://scripts/chão.gd" id="5_x1qpk"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="6_k3oen"]
+[ext_resource type="PackedScene" uid="uid://djopr0pcq0w5" path="res://cenas/instrucoes/ui-mundo2.tscn" id="7_526ur"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kh1nc"]
 
@@ -34,27 +34,27 @@ size = Vector2(25, 25)
 
 [node name="diretor" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_squnt")
+script = ExtResource("1_oinid")
 
 [node name="entidades" type="Node" parent="."]
 
-[node name="unidade" parent="entidades" instance=ExtResource("2_8jis2")]
+[node name="unidade" parent="entidades" instance=ExtResource("2_g0bnd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83645, 1.05168, -1.09666)
 
-[node name="unidade2" parent="entidades" instance=ExtResource("2_8jis2")]
+[node name="unidade2" parent="entidades" instance=ExtResource("2_g0bnd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09567, 1.05168, 4.02088)
 
-[node name="unidade3" parent="entidades" instance=ExtResource("2_8jis2")]
+[node name="unidade3" parent="entidades" instance=ExtResource("2_g0bnd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5562, 1.05168, -2.25627)
 
-[node name="recurso" parent="entidades" instance=ExtResource("3_yjt0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18226, 1.02161, 8.99202)
+[node name="recurso" parent="entidades" instance=ExtResource("3_4b77h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18226, 0, 8.99202)
 
-[node name="recurso2" parent="entidades" instance=ExtResource("3_yjt0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74407, 1.02161, 5.67579)
+[node name="recurso2" parent="entidades" instance=ExtResource("3_4b77h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.74407, 0, 5.67579)
 
-[node name="recurso3" parent="entidades" instance=ExtResource("3_yjt0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20988, 1.02161, -0.0848875)
+[node name="recurso3" parent="entidades" instance=ExtResource("3_4b77h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.20988, 0, -0.0848875)
 
 [node name="graficos" type="Node" parent="."]
 
@@ -68,14 +68,14 @@ light_color = Color(1, 1, 0.615686, 1)
 light_energy = 0.1
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("3_eojme")]
+[node name="Player" parent="." instance=ExtResource("4_yryd3")]
 transform = Transform3D(0.103383, 0, -0.994642, 0, 1, 0, 0.994642, 0, 0.103383, -10.5997, -3.8147e-06, -9.43898)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_wmxbc")
 
 [node name="chão" type="StaticBody3D" parent="NavigationRegion3D"]
-script = ExtResource("4_4h60g")
+script = ExtResource("5_x1qpk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/chão"]
 material_override = SubResource("StandardMaterial3D_om2lx")
@@ -84,11 +84,12 @@ mesh = SubResource("PlaneMesh_6xem2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/chão"]
 shape = SubResource("WorldBoundaryShape3D_vooh0")
 
-[node name="Viewport2Din3D" parent="." instance=ExtResource("5_xs7qo")]
+[node name="Viewport2Din3D" parent="." instance=ExtResource("6_k3oen")]
 transform = Transform3D(-0.64161, 0, -0.767031, 0, 1, 0, 0.767031, 0, -0.64161, 6.48271, 2.91709, 10.3971)
-scene = ExtResource("7_tlibl")
+scene = ExtResource("7_526ur")
 viewport_size = Vector2(800, 600)
 transparent = 0
 unshaded = true
+scene_properties_keys = PackedStringArray()
 
 [connection signal="pointer_event" from="NavigationRegion3D/chão" to="NavigationRegion3D/chão" method="_on_pointer_event"]
