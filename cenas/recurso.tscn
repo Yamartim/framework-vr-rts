@@ -15,7 +15,7 @@ material = SubResource("StandardMaterial3D_3stk1")
 height = 0.5
 radius = 2.0
 
-[node name="recurso" type="StaticBody3D" groups=["Recurso"]]
+[node name="recurso" type="StaticBody3D" groups=["Recurso", "navigation_mesh_source_group"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 process_mode = 4

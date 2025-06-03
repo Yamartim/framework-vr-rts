@@ -16,7 +16,7 @@ size = Vector3(2, 1.4, 1.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xwo56"]
 size = Vector3(2.7, 1, 1)
 
-[node name="estrutura" type="StaticBody3D" groups=["Estrutura"]]
+[node name="estrutura" type="StaticBody3D" groups=["Estrutura", "navigation_mesh_source_group"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 process_mode = 4
