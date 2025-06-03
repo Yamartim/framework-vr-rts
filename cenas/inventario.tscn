@@ -63,6 +63,7 @@ viewport_path = NodePath("Sprite3D/SubViewport")
 
 [sub_resource type="SystemFont" id="SystemFont_e6eor"]
 font_names = PackedStringArray("Fira Code")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_45pl0"]
 font = SubResource("SystemFont_e6eor")

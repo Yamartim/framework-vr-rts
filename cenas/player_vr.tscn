@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cctm31a5mlmu7"]
+[gd_scene load_steps=16 format=3 uid="uid://cctm31a5mlmu7"]
 
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_0i3lv"]
 [ext_resource type="Script" uid="uid://dkdgvsedssvj4" path="res://scripts/player_vr.gd" id="1_ark1w"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="8_meyyq"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="9_yu66g"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qv6vy"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i41d"]
 resource_local_to_scene = true
 albedo_color = Color(1, 1, 0, 1)
 
@@ -34,6 +34,10 @@ radius = 3.0
 transparency = 1
 albedo_color = Color(0.4, 0, 1, 0.215686)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jowpl"]
+resource_local_to_scene = true
+albedo_color = Color(1, 1, 0, 1)
+
 [node name="XROrigin3D" type="XROrigin3D"]
 script = ExtResource("1_ark1w")
 
@@ -47,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="Mao_Esq" instance=ExtResource("1_0i3lv")]
-hand_material_override = SubResource("StandardMaterial3D_qv6vy")
+hand_material_override = SubResource("StandardMaterial3D_0i41d")
 
 [node name="FunctionPointer" parent="Mao_Esq" instance=ExtResource("2_c7aet")]
 show_target = true
@@ -80,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Mao_Dir" instance=ExtResource("3_oear4")]
-hand_material_override = SubResource("StandardMaterial3D_qv6vy")
+hand_material_override = SubResource("StandardMaterial3D_jowpl")
 
 [node name="XRToolsFunctionPickup" type="Node3D" parent="Mao_Dir"]
 script = ExtResource("5_tx5ow")
