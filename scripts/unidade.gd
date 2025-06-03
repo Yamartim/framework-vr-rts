@@ -6,8 +6,9 @@ signal desescolhida
 #PRECISA ter um sinal com esse nome pro pointer event emitir
 signal pointer_event(event:XRToolsPointerEvent)
 
-@onready var diretor := %diretor
-#@onready var meshinst := $MeshInstance3D #mesh placeholder
+@onready var player :Player= get_tree().get_first_node_in_group("Player")
+@onready var diretor :Diretor= get_tree().get_first_node_in_group("Diretor")
+
 @onready var mesh :RobotModel= $"robot-model"
 @onready var nav_agent := $NavigationAgent3D
 
@@ -40,11 +41,8 @@ func set_seleção(selec: bool):
 	selecionado = selec
 	mesh.mostrar_outline(selec)
 	if selecionado:
-		#meshinst.mesh.surface_get_material(0).next_pass.set('shader_parameter/outline_width', 3.0)
 		escolhida.emit(self)
-
 	else: 
-		#meshinst.mesh.surface_get_material(0).next_pass.set('shader_parameter/outline_width', 0.0)
 		desescolhida.emit(self)
 
 
@@ -57,19 +55,10 @@ func _on_diretor_mandar_ordem(posicao):
 
 
 func _physics_process(_delta):
-	
 	var pos_atual = global_transform.origin
 	var pos_prox = alvo
 	var vetor = (pos_prox - pos_atual).normalized() * velocidade
 	nav_agent.velocity = vetor
-
-
-
-func _on_pointer_event(event):
-	if event.event_type == event.Type.PRESSED:
-		print("pointer event ", event)
-		print(name, ' foi clicado pelo pointer VR!')
-		set_seleção(!selecionado)
 
 func set_alvo(a : Vector3):
 	alvo = a
@@ -92,9 +81,22 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 func _on_navigation_agent_3d_target_reached():
 	pass # Replace with function body.
 
+
+#region sel: apontar pra selecionar
+
+func _on_pointer_event(event):
+	if event.event_type == event.Type.PRESSED:
+		print("pointer event ", event)
+		print(name, ' foi clicado pelo pointer VR!')
+		set_seleção(!selecionado)
+
+#endregion
+
+#region mov: direcional direto
+
 func _on_direcional_input(btnname:String, value:Vector2):
 	#print("recebendo inputs...", btnname, value)
-	if %Player.dir_apontando:
-		var mao :XRController3D= %Player/Mao_Dir
-		var direct_alvo = global_position + Vector3(value.x, 0, -value.y).rotated(Vector3.UP, mao.global_rotation.y)*10000
+	if player.dir_apontando:
+		var direct_alvo = global_position + Vector3(value.x, 0, -value.y).rotated(Vector3.UP, player.get_rot_mao_dir())*10000
 		set_alvo(direct_alvo)
+#endregion

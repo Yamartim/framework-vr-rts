@@ -3,7 +3,7 @@ class_name Diretor extends Node
 signal mandar_ordem
 
 @onready var total_unidades = get_tree().get_nodes_in_group("Unidade")
-@onready var controle_direto :XRController3D = %Player/Mao_Dir
+@onready var controle_direto_sig :Signal = %Player/Mao_Dir.input_vector2_changed
 
 var unidades_selecionadas = []
 
@@ -19,7 +19,7 @@ var unidades_selecionadas = []
 func _on_unidade_escolhida(unidade: Unidade):
 	unidades_selecionadas.append(unidade)
 	connect("mandar_ordem", unidade._on_diretor_mandar_ordem)
-	controle_direto.connect("input_vector2_changed", unidade._on_direcional_input)
+	controle_direto_sig.connect(unidade._on_direcional_input)
 
 	#print(unidades_selecionadas)
 
@@ -28,8 +28,8 @@ func _on_unidade_desescolhida(unidade: Unidade):
 	
 	if is_connected("mandar_ordem", unidade._on_diretor_mandar_ordem):
 		disconnect("mandar_ordem", unidade._on_diretor_mandar_ordem)
-	if controle_direto.is_connected("input_vector2_changed", unidade._on_direcional_input):
-		controle_direto.disconnect("input_vector2_changed", unidade._on_direcional_input)
+	if controle_direto_sig.is_connected(unidade._on_direcional_input):
+		controle_direto_sig.disconnect(unidade._on_direcional_input)
 
 	#print(unidades_selecionadas)
 

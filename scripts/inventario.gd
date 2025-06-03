@@ -75,6 +75,8 @@ func transferir_item(to_iventario:Inventario) -> bool:
 	to_iventario.adicionar_item(item)
 	item.position = temp_pos
 	return true
+	
+#region signal callbacks
 
 func _on_area_itens_body_entered(body: Node3D) -> void:
 	print("obj entrou")
@@ -90,3 +92,4 @@ func _on_area_itens_body_exited(body: Node3D) -> void:
 		print("desconectando")
 		body.disconnect("dropped", adicionar_item)
 		body.request_highlight(body.get_child(0), false)
+#endregion

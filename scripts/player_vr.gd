@@ -1,7 +1,10 @@
+class_name Player
 extends XROrigin3D
 
-@export var initialize := false
+@export var initialize_passthrough := false
 @export var vrsim := false
+
+@onready var diretor :Diretor= %diretor
 
 @onready var cone_selecao: MeshInstance3D = $Mao_Esq/cone_selecao
 @onready var cone_deselecao: MeshInstance3D = $Mao_Esq/cone_deselecao
@@ -14,8 +17,7 @@ var cone_deselecao_on := false
 var dir_apontando := false
 
 func _ready():
-	if !Engine.is_editor_hint() and initialize:
-		$StartXR.initialize()
+	if initialize_passthrough:
 		var passthrough_on = enable_passthrough()
 		print("passthrough rodando: ", passthrough_on)
 		
@@ -31,7 +33,7 @@ func enable_passthrough() -> bool:
 	if xr_interface and xr_interface.is_passthrough_supported():
 		if !xr_interface.start_passthrough():
 			return false
-	else:
+	elif !vrsim:
 		var modes = xr_interface.get_supported_environment_blend_modes()
 		if xr_interface.XR_ENV_BLEND_MODE_ALPHA_BLEND in modes:
 			xr_interface.set_environment_blend_mode(xr_interface.XR_ENV_BLEND_MODE_ALPHA_BLEND)
@@ -54,6 +56,10 @@ func mao_pra_cima():
 	else:
 		$Mao_Esq/LeftHand.hand_material_override.albedo_color = Color.YELLOW
 
+func get_rot_mao_dir()->float: return $Mao_Dir.global_rotation.y
+
+#region sel: cones de selecao
+
 func check_cones():
 	if cone_selecao_on:
 		var cast = cone_selecao.get_child(0).collision_result
@@ -72,7 +78,7 @@ func _on_mao_esq_button_pressed(btnname):
 	print('mao esquerda apertou: ', btnname)
 	
 	if btnname == 'grip_click' and chamar_selecionados:
-		%diretor.emitir_ordem(self.position)
+		diretor.emitir_ordem(self.position)
 
 	elif btnname == 'ax_button':
 		print("ativando SEL")
@@ -119,11 +125,13 @@ func _on_selecao_body_entered(body: Node3D) -> void:
 func _on_deselecao_body_entered(body: Node3D) -> void:
 	if body is Unidade:
 		body.set_seleção(false)
+#endregion
 
+#region mov: apontar pra mover
 
 func _on_mao_dir_button_pressed(btnname: String) -> void:
 	var mao_dir_paralel_chao :bool= abs($Mao_Dir.global_rotation_degrees.x) < 50
-	var unidades_sel = !%diretor.unidades_selecionadas.is_empty()
+	var unidades_sel = !diretor.unidades_selecionadas.is_empty()
 	var cond_apontar :bool= btnname == 'grip_click' and unidades_sel and mao_dir_paralel_chao
 	if cond_apontar:
 		dir_apontando = true
@@ -136,3 +144,4 @@ func _on_mao_dir_button_released(btnname: String) -> void:
 		dir_apontando = false
 		$Mao_Dir/MovementTurn.enabled = true
 		$Mao_Dir/RightHand.hand_material_override.albedo_color = Color.YELLOW
+#endregion
