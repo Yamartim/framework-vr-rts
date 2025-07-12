@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://dkc1fn631e6x3"]
+[gd_scene load_steps=12 format=3 uid="uid://dkc1fn631e6x3"]
 
 [ext_resource type="Script" uid="uid://coh0j70guxa1h" path="res://scripts/inventario.gd" id="1_upre7"]
+[ext_resource type="Script" uid="uid://cio6anq7u0e5v" path="res://scripts/vp_sprite_3d.gd" id="2_45pl0"]
 
 [sub_resource type="Shader" id="Shader_e6eor"]
 resource_local_to_scene = true
@@ -58,9 +59,6 @@ size = Vector3(0.3, 0.3, 0.3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6eor"]
 size = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_e6eor"]
-viewport_path = NodePath("Sprite3D/SubViewport")
-
 [sub_resource type="SystemFont" id="SystemFont_e6eor"]
 font_names = PackedStringArray("Fira Code")
 subpixel_positioning = 0
@@ -70,6 +68,12 @@ font = SubResource("SystemFont_e6eor")
 font_size = 200
 outline_size = 50
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_45pl0"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p5ggw"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Inventario" type="Node3D"]
 script = ExtResource("1_upre7")
@@ -85,17 +89,11 @@ collision_mask = 2048
 [node name="CollisionShape3D" type="CollisionShape3D" parent="AreaItens"]
 shape = SubResource("BoxShape3D_e6eor")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-pixel_size = 0.001
-billboard = 2
-texture = SubResource("ViewportTexture_e6eor")
-
-[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+[node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(256, 256)
 
-[node name="Label" type="Label" parent="Sprite3D/SubViewport"]
+[node name="Label" type="Label" parent="SubViewport"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -107,6 +105,14 @@ text = "99"
 label_settings = SubResource("LabelSettings_45pl0")
 horizontal_alignment = 3
 vertical_alignment = 3
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+pixel_size = 0.001
+billboard = 2
+texture = SubResource("ViewportTexture_45pl0")
+script = ExtResource("2_45pl0")
+_vpt = SubResource("ViewportTexture_p5ggw")
 
 [connection signal="body_entered" from="AreaItens" to="." method="_on_area_itens_body_entered"]
 [connection signal="body_exited" from="AreaItens" to="." method="_on_area_itens_body_exited"]

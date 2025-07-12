@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://byvn8uutt4kl2"]
+[gd_scene load_steps=6 format=3 uid="uid://byvn8uutt4kl2"]
 
+[ext_resource type="Script" uid="uid://c7qxll4kbpbq" path="res://scripts/level_logic.gd" id="1_mexv7"]
 [ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="1_xiycv"]
 [ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="2_mexv7"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_h6eek"]
 [ext_resource type="PackedScene" uid="uid://ccspp16cc6ibi" path="res://cenas/instrucoes/ui-mundo4.tscn" id="4_138bw"]
 
 [node name="Level4" type="Node3D"]
+script = ExtResource("1_mexv7")
+level_num = 4
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("3_h6eek")]
 transform = Transform3D(-0.64161, 0, -0.767031, 0, 1, 0, 0.767031, 0, -0.64161, 6.48271, 2.91709, 10.3971)

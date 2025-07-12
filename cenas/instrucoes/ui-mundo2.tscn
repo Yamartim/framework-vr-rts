@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://djopr0pcq0w5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ci0k0"]
+resource_local_to_scene = true
 font_size = 43
 
 [node name="UImundo" type="Panel"]

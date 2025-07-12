@@ -1,11 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://c78nmx4i22rlc"]
+[gd_scene load_steps=7 format=3 uid="uid://c78nmx4i22rlc"]
 
+[ext_resource type="Script" uid="uid://c7qxll4kbpbq" path="res://scripts/level_logic.gd" id="1_2pv5e"]
 [ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="1_xqvxg"]
 [ext_resource type="PackedScene" uid="uid://dn8t0y53wrjgh" path="res://cenas/recurso.tscn" id="2_2pv5e"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="3_bf2hp"]
 [ext_resource type="PackedScene" uid="uid://djopr0pcq0w5" path="res://cenas/instrucoes/ui-mundo2.tscn" id="4_bhgvl"]
+[ext_resource type="Script" uid="uid://t7dx52vsn6mh" path="res://scripts/objetivo_lvl_2.gd" id="6_bf2hp"]
 
 [node name="Level2" type="Node3D"]
+script = ExtResource("1_2pv5e")
+level_num = 2
 
 [node name="Viewport2Din3D" parent="." instance=ExtResource("3_bf2hp")]
 transform = Transform3D(-0.64161, 0, -0.767031, 0, 1, 0, 0.767031, 0, -0.64161, 6.48271, 2.91709, 10.3971)
@@ -32,3 +36,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09567, 1.05168, 4.02088)
 
 [node name="unidade" parent="." instance=ExtResource("1_xqvxg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.83645, 1.05168, -1.09666)
+
+[node name="ObjetivoLvl2" type="Node" parent="."]
+script = ExtResource("6_bf2hp")
+
+[connection signal="pegou_item" from="unidade3" to="ObjetivoLvl2" method="_on_unidade_pegou_item"]
+[connection signal="pegou_item" from="unidade2" to="ObjetivoLvl2" method="_on_unidade_pegou_item"]
+[connection signal="pegou_item" from="unidade" to="ObjetivoLvl2" method="_on_unidade_pegou_item"]
+[connection signal="terminar_level" from="ObjetivoLvl2" to="." method="_on_terminar_level"]

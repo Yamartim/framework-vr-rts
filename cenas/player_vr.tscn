@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cctm31a5mlmu7"]
+[gd_scene load_steps=21 format=3 uid="uid://cctm31a5mlmu7"]
 
 [ext_resource type="PackedScene" uid="uid://bq86r4yll8po" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_fullglove_low.tscn" id="1_0i3lv"]
 [ext_resource type="Script" uid="uid://dkdgvsedssvj4" path="res://scripts/player_vr.gd" id="1_ark1w"]
@@ -9,8 +9,11 @@
 [ext_resource type="Script" uid="uid://ds567hnm3630c" path="res://addons/godot-xr-tools/functions/function_pickup.gd" id="5_tx5ow"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="8_meyyq"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="9_yu66g"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="10_ba6cs"]
+[ext_resource type="PackedScene" uid="uid://bkmdjxqhx2bhy" path="res://cenas/instrucoes/ui-mao.tscn" id="10_ykwf3"]
+[ext_resource type="PackedScene" uid="uid://cd1wwc0y3nvrj" path="res://cenas/instrucoes/unidade_check.tscn" id="11_jowpl"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0i41d"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jowpl"]
 resource_local_to_scene = true
 albedo_color = Color(1, 1, 0, 1)
 
@@ -34,9 +37,20 @@ radius = 3.0
 transparency = 1
 albedo_color = Color(0.4, 0, 1, 0.215686)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jowpl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ba6cs"]
 resource_local_to_scene = true
 albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ykwf3"]
+shading_mode = 0
+albedo_color = Color(1, 0.566667, 0, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_vu2uj"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0)
+}
+point_count = 1
 
 [node name="XROrigin3D" type="XROrigin3D"]
 script = ExtResource("1_ark1w")
@@ -51,11 +65,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"left_hand"
 
 [node name="LeftHand" parent="Mao_Esq" instance=ExtResource("1_0i3lv")]
-hand_material_override = SubResource("StandardMaterial3D_0i41d")
+hand_material_override = SubResource("StandardMaterial3D_jowpl")
 
 [node name="FunctionPointer" parent="Mao_Esq" instance=ExtResource("2_c7aet")]
+laser_length = 1
 show_target = true
-collision_mask = 5242881
+target_radius = 0.01
+collision_mask = 5242945
 
 [node name="MovementDirect" parent="Mao_Esq" instance=ExtResource("5_12xdw")]
 strafe = true
@@ -84,7 +100,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.4)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Mao_Dir" instance=ExtResource("3_oear4")]
-hand_material_override = SubResource("StandardMaterial3D_jowpl")
+hand_material_override = SubResource("StandardMaterial3D_ba6cs")
 
 [node name="XRToolsFunctionPickup" type="Node3D" parent="Mao_Dir"]
 script = ExtResource("5_tx5ow")
@@ -92,7 +108,31 @@ script = ExtResource("5_tx5ow")
 [node name="MovementTurn" parent="Mao_Dir" instance=ExtResource("8_meyyq")]
 turn_mode = 2
 
+[node name="MenuMao" parent="Mao_Dir" instance=ExtResource("10_ba6cs")]
+transform = Transform3D(9.5534e-18, 2.18557e-10, -0.005, 0.005, -2.18557e-10, -3.10744e-23, -2.18557e-10, -0.005, -2.18557e-10, -0.0286676, -0.020876, 0.0564137)
+visible = false
+screen_size = Vector2(60, 90)
+enabled = false
+collision_layer = 5242880
+scene = ExtResource("10_ykwf3")
+viewport_size = Vector2(600, 900)
+unshaded = true
+scene_properties_keys = PackedStringArray("ui_mao.gd", "_unidade_check_btn")
+_unidade_check_btn = ExtResource("11_jowpl")
+
+[node name="PathPointer" parent="Mao_Dir" instance=ExtResource("2_c7aet")]
+visible = false
+enabled = false
+laser_length = 1
+laser_material = SubResource("StandardMaterial3D_ykwf3")
+show_target = true
+target_material = SubResource("StandardMaterial3D_ykwf3")
+collision_mask = 64
+
 [node name="StartXR" parent="." instance=ExtResource("4_tef3j")]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_vu2uj")
 
 [connection signal="button_pressed" from="Mao_Esq" to="." method="_on_mao_esq_button_pressed"]
 [connection signal="button_released" from="Mao_Esq" to="." method="_on_mao_esq_button_released"]

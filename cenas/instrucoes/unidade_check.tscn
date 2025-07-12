@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd1wwc0y3nvrj"]
+
+[ext_resource type="Script" uid="uid://pxsyf5gfrnny" path="res://scripts/unidade_check.gd" id="1_ju4rn"]
+
+[node name="UnidadeCheck" type="CheckButton"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -2.0
+offset_right = -777.0
+offset_bottom = -439.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 20
+text = "NOME AQUI"
+alignment = 2
+expand_icon = true
+script = ExtResource("1_ju4rn")

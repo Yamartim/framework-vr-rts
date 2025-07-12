@@ -37,6 +37,7 @@ Chao=""
 navigation_mesh_source_group=""
 Diretor=""
 Player=""
+Recurso=""
 
 [input]
 
@@ -58,6 +59,9 @@ R_click={
 3d_physics/layer_3="Pickable Objects"
 3d_physics/layer_4="Wall Walking"
 3d_physics/layer_5="Grappling Target"
+3d_physics/layer_7="interacao-laser-chao"
+3d_physics/layer_8="interacao unidades"
+3d_physics/layer_12="frutas seguradas"
 3d_physics/layer_17="Held Objects"
 3d_physics/layer_18="Player Hands"
 3d_physics/layer_19="Grab Handles"
@@ -65,6 +69,11 @@ R_click={
 3d_physics/layer_21="Pointable Objects"
 3d_physics/layer_22="Hand Pose Areas"
 3d_physics/layer_23="UI Objects"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+jolt_physics_3d/simulation/areas_detect_static_bodies=true
 
 [rendering]
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtrjgbbu0mtvl"]
+[gd_scene load_steps=9 format=3 uid="uid://dtrjgbbu0mtvl"]
 
+[ext_resource type="Script" uid="uid://c7qxll4kbpbq" path="res://scripts/level_logic.gd" id="1_h1tij"]
 [ext_resource type="PackedScene" uid="uid://bce5vo4m4u7mp" path="res://cenas/unidade.tscn" id="1_ku6by"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_h1tij"]
 [ext_resource type="PackedScene" uid="uid://dykwp1cw6hmaj" path="res://cenas/instrucoes/ui-mundo1.tscn" id="3_e4lng"]
+[ext_resource type="Script" uid="uid://d17niguatthor" path="res://scripts/objetivo_lvl_1.gd" id="5_e4lng"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dis1j"]
 transparency = 1
@@ -16,6 +18,8 @@ size = Vector3(4, 0.75, 4)
 points = PackedVector3Array(-2, -0.375, -2, -2, 0.375, -2, 2, -0.375, -2, -2, -0.375, 2, -2, 0.375, 2, 2, 0.375, -2, 2, -0.375, 2, 2, 0.375, 2)
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_h1tij")
+level_num = 1
 
 [node name="objetivo" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.34487, 0, 8.4077)
@@ -43,3 +47,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.09567, 1.05168, 4.02088)
 
 [node name="unidade3" parent="." instance=ExtResource("1_ku6by")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5562, 1.05168, -2.25627)
+
+[node name="ObjetivoLvl1" type="Node" parent="."]
+script = ExtResource("5_e4lng")
+
+[connection signal="body_entered" from="objetivo" to="ObjetivoLvl1" method="_on_objetivo_body_entered"]
+[connection signal="terminar_level" from="ObjetivoLvl1" to="." method="_on_terminar_level"]

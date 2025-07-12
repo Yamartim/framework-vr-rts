@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://dm6x4srccvbp3"]
+[gd_scene load_steps=2 format=3 uid="uid://dm6x4srccvbp3"]
+
+[ext_resource type="Script" uid="uid://c7qxll4kbpbq" path="res://scripts/level_logic.gd" id="1_ou5cf"]
 
 [node name="Level5" type="Node3D"]
+script = ExtResource("1_ou5cf")
+level_num = 5

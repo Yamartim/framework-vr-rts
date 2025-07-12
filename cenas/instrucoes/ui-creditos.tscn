@@ -1,8 +1,91 @@
-[gd_scene format=3 uid="uid://fe3c56kh7v7j"]
+[gd_scene load_steps=7 format=3 uid="uid://fe3c56kh7v7j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwt1m"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.13, 0.13, 0.13, 0.321569)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="SystemFont" id="SystemFont_efdeg"]
+font_names = PackedStringArray("Fira Code")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cucoo"]
+font = SubResource("SystemFont_efdeg")
+font_size = 40
+
+[sub_resource type="SystemFont" id="SystemFont_omphw"]
+font_names = PackedStringArray("Lucida Sans")
+
+[sub_resource type="LabelSettings" id="LabelSettings_340kx"]
+resource_local_to_scene = true
+font = SubResource("SystemFont_omphw")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_n4uk5"]
+font = SubResource("SystemFont_omphw")
+font_size = 48
 
 [node name="uiintroducao" type="Panel"]
+custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwt1m")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 21.0
+offset_right = -31.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="container"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 2
+text = "
+CREDITOS
+"
+label_settings = SubResource("LabelSettings_cucoo")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="container"]
+layout_mode = 2
+text = "Martim Lima
+< idealização, desenvolvimento >
+
+Daniel Lucredio
+< orientação >
+
+Assets utilizados:
+............................................................
+
+
+
+"
+label_settings = SubResource("LabelSettings_340kx")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="container"]
+layout_mode = 2
+text = "E agradeço você por participar <3"
+label_settings = SubResource("LabelSettings_n4uk5")

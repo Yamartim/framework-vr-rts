@@ -1,8 +1,161 @@
-[gd_scene format=3 uid="uid://p07ityrru7yb"]
+[gd_scene load_steps=3 format=3 uid="uid://p07ityrru7yb"]
+
+[ext_resource type="Script" uid="uid://c26awdk6ccbu8" path="res://scripts/ui_menu_mestre.gd" id="1_mrb41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwt1m"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.13, 0.13, 0.13, 0.321569)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
 
 [node name="uiintroducao" type="Panel"]
+custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwt1m")
+script = ExtResource("1_mrb41")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 59.0
+offset_right = 1867.0
+offset_bottom = 1058.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "REINICIAR"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="ButtonPassthrough" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "REALIDADE 
+MISTURADA"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "ALTERAR ESCALA 
+DO MUNDO"
+alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button1" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ATIVIDADE 1"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ATIVIDADE 2"
+
+[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ATIVIDADE 3"
+
+[node name="VSeparator3" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button4" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ATIVIDADE 4"
+
+[node name="VSeparator4" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Button5" type="Button" parent="VBoxContainer/HBoxContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "ATIVIDADE 5"
+
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer2/ButtonPassthrough" to="." method="_on_button_passthrough_button_down"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer2/CheckButton" to="." method="_on_scale_button_toggled"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer/Button1" to="." method="_on_button_1_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer2/Button2" to="." method="_on_button_2_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer3/Button3" to="." method="_on_button_3_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer4/Button4" to="." method="_on_button_4_button_down"]
+[connection signal="button_down" from="VBoxContainer/HBoxContainer/VBoxContainer5/Button5" to="." method="_on_button_5_button_down"]

@@ -1,8 +1,91 @@
-[gd_scene format=3 uid="uid://eiag8tqod3ta"]
+[gd_scene load_steps=7 format=3 uid="uid://eiag8tqod3ta"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwt1m"]
+content_margin_left = 32.0
+content_margin_top = 32.0
+content_margin_right = 32.0
+content_margin_bottom = 32.0
+bg_color = Color(0.13, 0.13, 0.13, 0.321569)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 35
+corner_radius_top_right = 35
+corner_radius_bottom_right = 35
+corner_radius_bottom_left = 35
+
+[sub_resource type="SystemFont" id="SystemFont_efdeg"]
+font_names = PackedStringArray("Fira Code")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6y0gw"]
+font = SubResource("SystemFont_efdeg")
+font_size = 40
+
+[sub_resource type="SystemFont" id="SystemFont_omphw"]
+font_names = PackedStringArray("Lucida Sans")
+
+[sub_resource type="LabelSettings" id="LabelSettings_jkvvd"]
+resource_local_to_scene = true
+font = SubResource("SystemFont_omphw")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_5wul4"]
+font = SubResource("SystemFont_omphw")
+font_size = 48
 
 [node name="uiintroducao" type="Panel"]
+custom_minimum_size = Vector2(1920, 1080)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uwt1m")
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 21.0
+offset_right = -31.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="container"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 2
+text = "Olá! Este é um pequeno demo para varias mecânicas de movimentos de unidades comuns em jogos RTS adaptados para realidade virtual. 
+
+Obrigado por experimentar!"
+label_settings = SubResource("LabelSettings_6y0gw")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="container"]
+layout_mode = 2
+text = "Existem 3 variedades de mecanicas de seleção de unidade:
+
+- apontar com a mão esquerda e apertar o gatilho
+- usar os botoes da mão esquerda para selecionar/deselecionar as unidades em uma grande area
+- selecionar as unidades pela lista na sua mão (INCOMPLETO)
+
+
+Existem também 3 variedades de mecanicas de movimentação das unidades
+
+- apontar com a mão esquerda para o chão e apertar o gatilho com unidades selecionadas
+- fechar a mão direita, apontar para uma direção, e usar o direcional para fazer unidades selecionadas andarem
+- usar os botoes da mão direita para criar um caminho para unidades selecionadas
+"
+label_settings = SubResource("LabelSettings_jkvvd")
+
+[node name="Label3" type="Label" parent="container"]
+layout_mode = 2
+text = "Use essas mecânicas para terminar 5 objetivos selecionaveis pelo menu ao lado"
+label_settings = SubResource("LabelSettings_5wul4")

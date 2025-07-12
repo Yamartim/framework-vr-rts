@@ -4,7 +4,7 @@ const tam_raio = 1000
 var marcador:PackedScene = preload("res://cenas/marcador.tscn")
 
 func _ready():
-	if %Player.vrsim:
+	if %Player._vrsim:
 		queue_free()
 
 func _input(event):

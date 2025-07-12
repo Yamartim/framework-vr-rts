@@ -1,39 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://buctg0yug8gnx"]
+[gd_scene load_steps=4 format=3 uid="uid://buctg0yug8gnx"]
 
 [ext_resource type="PackedScene" uid="uid://dkc1fn631e6x3" path="res://cenas/inventario.tscn" id="1_q4q6x"]
 [ext_resource type="PackedScene" uid="uid://bgpcl8f8tgcvs" path="res://assets/Chest/Chest.fbx" id="2_s4yuv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a561h"]
-albedo_color = Color(1, 0.529412, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_j1d3g"]
-material = SubResource("StandardMaterial3D_a561h")
-size = Vector3(3, 3, 3)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_s8w7c"]
-size = Vector3(2, 1.4, 1.6)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xwo56"]
-size = Vector3(2.7, 1, 1)
+size = Vector3(1.1, 0.9, 0.9)
 
 [node name="estrutura" type="StaticBody3D" groups=["Estrutura", "navigation_mesh_source_group"]]
+collision_layer = 129
+collision_mask = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-process_mode = 4
-visible = false
-mesh = SubResource("BoxMesh_j1d3g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+[node name="ChestCollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 shape = SubResource("BoxShape3D_s8w7c")
 
-[node name="Inventario" parent="." instance=ExtResource("1_q4q6x")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.005, 0)
-
-[node name="areaRecebeItem" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.96733, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="areaRecebeItem"]
-shape = SubResource("BoxShape3D_xwo56")
-
 [node name="Chest" parent="." instance=ExtResource("2_s4yuv")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="Inventario" parent="." instance=ExtResource("1_q4q6x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.08851, 0)

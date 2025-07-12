@@ -56,10 +56,9 @@ emission_enabled = true
 emission = Color(0.713324, 0.711215, 0.679032, 1)
 emission_energy_multiplier = 0.0
 
-[node name="Robot (1)" node_paths=PackedStringArray("meshes") instance=ExtResource("1_hmjxq")]
+[node name="Robot (1)" node_paths=PackedStringArray("_meshes") instance=ExtResource("1_hmjxq")]
 script = ExtResource("2_btdxw")
-meshes = [NodePath("RobotArmature/Skeleton3D/Foot_L_2/Foot_L_2"), NodePath("RobotArmature/Skeleton3D/Torso/Torso"), NodePath("RobotArmature/Skeleton3D/Head_2/Head_2"), NodePath("RobotArmature/Skeleton3D/Shoulder_L_2/Shoulder_L_2"), NodePath("RobotArmature/Skeleton3D/Arm_L/Arm_L"), NodePath("RobotArmature/Skeleton3D/Shoulder_R_2/Shoulder_R_2"), NodePath("RobotArmature/Skeleton3D/Arm_R/Arm_R"), NodePath("RobotArmature/Skeleton3D/Leg_L/Leg_L"), NodePath("RobotArmature/Skeleton3D/LowerLeg_L_2/LowerLeg_L_2"), NodePath("RobotArmature/Skeleton3D/Leg_R/Leg_R"), NodePath("RobotArmature/Skeleton3D/LowerLeg_R_2/LowerLeg_R_2"), NodePath("RobotArmature/Skeleton3D/Foot_R_2/Foot_R_2"), NodePath("RobotArmature/Skeleton3D/Hand_R"), NodePath("RobotArmature/Skeleton3D/Hand_L")]
-material = SubResource("StandardMaterial3D_flfva")
+_meshes = [NodePath("RobotArmature/Skeleton3D/Foot_L_2/Foot_L_2"), NodePath("RobotArmature/Skeleton3D/Torso/Torso"), NodePath("RobotArmature/Skeleton3D/Head_2/Head_2"), NodePath("RobotArmature/Skeleton3D/Shoulder_L_2/Shoulder_L_2"), NodePath("RobotArmature/Skeleton3D/Arm_L/Arm_L"), NodePath("RobotArmature/Skeleton3D/Leg_L/Leg_L"), NodePath("RobotArmature/Skeleton3D/Shoulder_R_2/Shoulder_R_2"), NodePath("RobotArmature/Skeleton3D/Arm_R/Arm_R"), NodePath("RobotArmature/Skeleton3D/Leg_R/Leg_R"), NodePath("RobotArmature/Skeleton3D/LowerLeg_L_2/LowerLeg_L_2"), NodePath("RobotArmature/Skeleton3D/LowerLeg_R_2/LowerLeg_R_2"), NodePath("RobotArmature/Skeleton3D/Hand_R"), NodePath("RobotArmature/Skeleton3D/Hand_L")]
 
 [node name="Skeleton3D" parent="RobotArmature" index="0"]
 bones/1/rotation = Quaternion(2.92124e-08, 0.69555, 0.718478, 1.57053e-07)
@@ -98,7 +97,7 @@ bones/60/rotation = Quaternion(0.277154, -3.05388e-07, 3.92564e-08, 0.960826)
 bones/65/rotation = Quaternion(5.08964e-07, 0.69555, 0.718478, 6.19279e-07)
 
 [node name="Foot_L_2" parent="RobotArmature/Skeleton3D" index="0"]
-transform = Transform3D(1, 9.58667e-08, 6.33051e-08, -9.58665e-08, 1, 7.56234e-07, -6.3305e-08, -7.07805e-07, 1, 0.00624058, -0.00191114, 0.00397664)
+transform = Transform3D(1, 9.58672e-08, 6.3306e-08, -9.58669e-08, 1, 9.68575e-08, -6.33059e-08, -1.11759e-07, 1, 0.00624058, -0.00191114, 0.00397664)
 bone_idx = 2
 
 [node name="Foot_L_2" parent="RobotArmature/Skeleton3D/Foot_L_2" index="0"]
@@ -113,7 +112,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 surface_material_override/1 = SubResource("StandardMaterial3D_vmavx")
 
 [node name="Head_2" parent="RobotArmature/Skeleton3D" index="2"]
-transform = Transform3D(0.998071, 0.0405853, -0.0469699, -0.0377838, 0.997538, 0.05907, 0.0492517, -0.0571814, 0.997148, -0.000521874, 1.13436e-05, 0.0365313)
+transform = Transform3D(0.998071, 0.0405853, -0.0469698, -0.0377837, 0.997538, 0.0590701, 0.0492516, -0.0571814, 0.997148, -0.000521873, 1.13438e-05, 0.0365313)
 bone_idx = 11
 
 [node name="Head_2" parent="RobotArmature/Skeleton3D/Head_2" index="0"]
@@ -121,63 +120,63 @@ surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 surface_material_override/1 = SubResource("StandardMaterial3D_vmavx")
 
 [node name="Shoulder_L_2" parent="RobotArmature/Skeleton3D" index="3"]
-transform = Transform3D(0.434578, 2.28881e-07, 0.900634, 1.59487e-07, 0.999999, -3.98487e-07, -0.900634, 2.58183e-07, 0.434578, 0.00582681, 0.000209939, 0.0240805)
+transform = Transform3D(0.434578, 1.41336e-07, 0.900634, 2.06108e-07, 0.999999, -3.25166e-07, -0.900634, 2.65635e-07, 0.434578, 0.00582681, 0.000209939, 0.0240805)
 bone_idx = 14
 
 [node name="Shoulder_L_2" parent="RobotArmature/Skeleton3D/Shoulder_L_2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="Arm_L" parent="RobotArmature/Skeleton3D" index="4"]
-transform = Transform3D(0.435433, -0.00201528, 0.900219, 0.233061, 0.966155, -0.110568, -0.869529, 0.25795, 0.421166, 0.00265002, -0.00130695, 0.0288456)
+transform = Transform3D(0.435432, -0.00201485, 0.90022, 0.233061, 0.966155, -0.110568, -0.869529, 0.257951, 0.421165, 0.00265002, -0.00130695, 0.0288456)
 bone_idx = 16
 
 [node name="Arm_L" parent="RobotArmature/Skeleton3D/Arm_L" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="Shoulder_R_2" parent="RobotArmature/Skeleton3D" index="5"]
-transform = Transform3D(0.448449, -4.62585e-08, -0.893808, -9.33184e-08, 1, -1.01541e-07, 0.893808, 8.79063e-08, 0.448449, -0.00636986, 0.000209939, 0.0240748)
+transform = Transform3D(0.448449, -2.76318e-08, -0.893808, -1.00879e-07, 1, -9.04389e-08, 0.893808, 1.10258e-07, 0.448449, -0.00636986, 0.000209939, 0.0240748)
 bone_idx = 34
 
 [node name="Shoulder_R_2" parent="RobotArmature/Skeleton3D/Shoulder_R_2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="Arm_R" parent="RobotArmature/Skeleton3D" index="6"]
-transform = Transform3D(0.101816, -7.45058e-08, -0.202931, 0.0178376, 0.226162, 0.0089495, 0.202145, -0.0199567, 0.101422, -0.0082569, -0.000402435, 0.0201812)
+transform = Transform3D(0.101816, 8.56817e-08, -0.202931, 0.0178376, 0.226162, 0.0089497, 0.202145, -0.0199569, 0.101422, -0.0082569, -0.000402435, 0.0201812)
 bone_idx = 36
 
 [node name="Arm_R" parent="RobotArmature/Skeleton3D/Arm_R" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="Leg_L" parent="RobotArmature/Skeleton3D" index="7"]
-transform = Transform3D(0.984221, -0.175534, -0.0223149, 0.176784, 0.98087, 0.0816337, 0.0075583, -0.0842995, 0.996414, 0.00643831, -0.000287188, 0.0118699)
+transform = Transform3D(0.984221, -0.175534, -0.0223151, 0.176784, 0.980867, 0.0816354, 0.00755823, -0.0842991, 0.996414, 0.00643831, -0.000287191, 0.0118699)
 bone_idx = 54
 
 [node name="Leg_L" parent="RobotArmature/Skeleton3D/Leg_L" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="LowerLeg_L_2" parent="RobotArmature/Skeleton3D" index="8"]
-transform = Transform3D(0.984156, -0.177236, 0.00489874, 0.177099, 0.981346, -0.0749521, 0.00847668, 0.0746194, 0.997178, 0.0068437, -0.00214598, 0.00371967)
+transform = Transform3D(0.984156, -0.177236, 0.00489849, 0.177099, 0.981343, -0.0749504, 0.00847662, 0.0746205, 0.997179, 0.0068437, -0.00214599, 0.00371966)
 bone_idx = 56
 
 [node name="LowerLeg_L_2" parent="RobotArmature/Skeleton3D/LowerLeg_L_2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="Leg_R" parent="RobotArmature/Skeleton3D" index="9"]
-transform = Transform3D(0.962472, 0.267768, 0.0441125, -0.271059, 0.956436, 0.108364, -0.0131745, -0.116261, 0.993133, -0.00666554, -0.000179452, 0.0118434)
+transform = Transform3D(0.962472, 0.267767, 0.0441128, -0.271059, 0.956433, 0.108366, -0.0131744, -0.11626, 0.993133, -0.00666554, -0.000179455, 0.0118434)
 bone_idx = 59
 
 [node name="Leg_R" parent="RobotArmature/Skeleton3D/Leg_R" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="LowerLeg_R_2" parent="RobotArmature/Skeleton3D" index="10"]
-transform = Transform3D(0.962589, 0.270827, -0.00860253, -0.270697, 0.959729, -0.0750248, -0.0120628, 0.0745323, 0.997148, -0.00730422, -0.00206399, 0.00372037)
+transform = Transform3D(0.962589, 0.270826, -0.00860232, -0.270697, 0.959726, -0.0750238, -0.0120626, 0.074534, 0.997149, -0.00730422, -0.002064, 0.00372037)
 bone_idx = 61
 
 [node name="LowerLeg_R_2" parent="RobotArmature/Skeleton3D/LowerLeg_R_2" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_flfva")
 
 [node name="Foot_R_2" parent="RobotArmature/Skeleton3D" index="11"]
-transform = Transform3D(1, 9.58656e-08, -3.48739e-08, -9.58658e-08, 1, 6.4075e-07, 3.48747e-08, -5.66244e-07, 1, -0.00637997, -0.00191114, 0.00397664)
+transform = Transform3D(1, 9.58669e-08, -3.48729e-08, -9.58671e-08, 1, -1.49012e-08, 3.48734e-08, 2.98023e-08, 1, -0.00637997, -0.00191115, 0.00397664)
 bone_idx = 66
 
 [node name="Foot_R_2" parent="RobotArmature/Skeleton3D/Foot_R_2" index="0"]

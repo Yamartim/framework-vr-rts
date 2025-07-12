@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://c5wiohgssas04"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ci0k0"]
+resource_local_to_scene = true
 font_size = 43
 
 [node name="UImundo" type="Panel"]
@@ -17,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "FAÇA UNIDADES ARMAZENAREM RECURSOS NA BASE"
+text = "FAÇA UNIDADES ARMAZENAREM 10 ITENS NA BASE"
 label_settings = SubResource("LabelSettings_ci0k0")
 horizontal_alignment = 1
 vertical_alignment = 1
